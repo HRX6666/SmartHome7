@@ -9,8 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow1">#F7EFAC</color>
     <color name="yellow2">#EFE37B</color>
+    <color name="yellow3">#F3EA98</color>
     <color name="darkhui">#59CBD2CE</color>
     <color name="lighthui">#55544C</color>
+    <color name="lighthui2">#979692</color>
     <color name="blue2">#7EEAD7</color>
     <color name="white1">#F2EFE3</color>
     <color name="card1">#D0BBF5</color>

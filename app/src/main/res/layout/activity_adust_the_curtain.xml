@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AdjustTheLights"
+    tools:context=".Page_Samrt.AdjustTheLights"
     android:orientation="vertical"
     android:background="@color/yellow1">
     <androidx.appcompat.widget.Toolbar
@@ -38,27 +38,43 @@
         android:layout_height="40dp"
         android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/curtain_choose_home"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:spinnerMode="dropdown"/>
+        <Button
+            android:id="@+id/open_all"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="全开"
+            android:backgroundTint="@color/yellow2"/>
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="vertical">
-        <Spinner
-            android:id="@+id/curtain_choose_model"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:spinnerMode="dropdown"/>
-
+        <Button
+            android:id="@+id/open_mid"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="半开"
+            android:backgroundTint="@color/yellow2"/>
     </RelativeLayout>
-   <SeekBar
-       android:layout_width="match_parent"
-       android:layout_height="30dp"
-       android:splitTrack="true"
-       android:thumb="@drawable/curtain_seekbar"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/close_curtain"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="全关"
+            android:backgroundTint="@color/yellow2"
+            />
+    </RelativeLayout>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:splitTrack="true"
+        android:thumb="@drawable/curtain_seekbar" />
+
+
 </LinearLayout>

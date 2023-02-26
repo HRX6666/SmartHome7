@@ -1,4 +1,4 @@
-package com.example.smarthome.Activity;
+package com.example.smarthome.Page_Huiju;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

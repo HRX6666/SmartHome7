@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.smarthome"
-        minSdk 21
+        minSdk 26//本21
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -34,6 +34,12 @@ android {
 dependencies {
 
 
+    implementation'androidx.biometric:biometric:1.1.0'
+    implementation 'com.alibaba:fastjson:2.0.23'
+    implementation 'org.fusesource.mqtt-client:mqtt-client:1.12'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'

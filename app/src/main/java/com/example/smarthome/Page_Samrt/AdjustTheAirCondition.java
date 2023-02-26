@@ -1,4 +1,4 @@
-package com.example.smarthome.Activity;
+package com.example.smarthome.Page_Samrt;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,9 +11,13 @@ import android.widget.Spinner;
 
 
 import com.example.smarthome.R;
+import com.example.smarthome.View.CustomizeGoodsAddView;
 
 public class AdjustTheAirCondition extends AppCompatActivity {
             Toolbar air_tb;
+            private CustomizeGoodsAddView customizeGoodsAddView;
+            private int maxNum=30;
+            private int minNum=16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,24 @@ public class AdjustTheAirCondition extends AppCompatActivity {
         inithome();
         initwindspeed();
         initmodle();
+        initadd();
+    }
+
+    private void initadd() {
+        customizeGoodsAddView=findViewById(R.id.customizeGoodsAddView);
+        customizeGoodsAddView.setMaxValue(maxNum);
+        customizeGoodsAddView.setMinValue(minNum);
+        customizeGoodsAddView.setOnValueChangeListene(new CustomizeGoodsAddView.OnValueChangeListener() {
+            @Override
+            public void onValueChange(int value) {
+                if(value>maxNum){
+                    customizeGoodsAddView.setValue(maxNum);
+
+                }else{
+
+                }
+            }
+        });
     }
 
     private void initmodle() {

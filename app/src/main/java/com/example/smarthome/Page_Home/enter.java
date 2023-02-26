@@ -1,4 +1,4 @@
-package com.example.smarthome.Activity;
+package com.example.smarthome.Page_Home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +20,7 @@ public class enter extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(enter.this,Eroll.class);
+                Intent intent1=new Intent(enter.this, Eroll.class);
                 startActivity(intent1);
             }
         });

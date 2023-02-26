@@ -1,4 +1,4 @@
-package com.example.smarthome.Activity;
+package com.example.smarthome.Page_Home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.smarthome.Page_Samrt.AdustTheCurtain;
 import com.example.smarthome.R;
 
 public class Set extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class Set extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Set.this,AdustTheCurtain.class);
+                Intent intent=new Intent(Set.this, AdustTheCurtain.class);
                 startActivity(intent);
 
             }

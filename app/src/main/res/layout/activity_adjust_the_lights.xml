@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AdjustTheLights"
+    tools:context=".Page_Samrt.AdjustTheLights"
     android:orientation="vertical"
     android:background="@color/yellow1">
     <androidx.appcompat.widget.Toolbar
@@ -58,10 +58,11 @@
         android:text="亮度"
         android:textStyle="bold"
         android:fontFamily="sans-serif-black" />
-  <SeekBar
-      android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:thumb="@drawable/adjust_lights"/>
+    <SeekBar
+        android:id="@+id/brightness"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:thumb="@drawable/adjust_lights"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
@@ -70,6 +71,7 @@
         android:fontFamily="sans-serif-black" />
 
     <SeekBar
+        android:id="@+id/color_temper"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:thumb="@drawable/adjust_lights"/>
@@ -77,13 +79,28 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="vertical">
+
         <Spinner
             android:id="@+id/lights_choose_model"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:spinnerMode="dropdown"/>
+            android:spinnerMode="dropdown" />
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/trail_open"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellow2"
+        android:text="开灯" />
+
+    <Button
+        android:id="@+id/trail_shut"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellow2"
+        android:text="关灯" />
 
 
 </LinearLayout>

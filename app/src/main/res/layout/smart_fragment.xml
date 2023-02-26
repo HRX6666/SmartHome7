@@ -179,7 +179,7 @@
 
                 <LinearLayout
                     android:id="@+id/title1"
-                    android:layout_width="160dp"
+                    android:layout_width="100dp"
                     android:layout_height="280dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
@@ -213,9 +213,10 @@
                     android:id="@+id/add_smart"
                     android:layout_width="match_parent"
                     android:layout_height="280dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="21dp"
                     android:layout_toRightOf="@+id/title1"
                     android:background="@color/darkhui"
+                    android:descendantFocusability="blocksDescendants"
                     android:orientation="vertical" />
 
 

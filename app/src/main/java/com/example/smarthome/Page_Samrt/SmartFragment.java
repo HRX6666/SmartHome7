@@ -1,29 +1,27 @@
-package com.example.smarthome.Activity;
+package com.example.smarthome.Page_Samrt;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Adapter.AddSmartAdapter;
 import com.example.smarthome.Adapter.AddSmartHelper;
+import com.example.smarthome.Page_Samrt.AdjustTheAirCondition;
+import com.example.smarthome.Page_Samrt.AdjustTheLights;
+import com.example.smarthome.Page_Samrt.AdustTheCurtain;
+import com.example.smarthome.Page_Samrt.GoHome;
+import com.example.smarthome.Page_Samrt.GoOff;
+import com.example.smarthome.Page_Samrt.Monitoring;
+import com.example.smarthome.Page_Samrt.Night;
 import com.example.smarthome.R;
 
 import java.util.ArrayList;
@@ -79,7 +77,7 @@ public class SmartFragment extends Fragment{
         go_off.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent intent1=new Intent(getActivity(),GoOff.class);
+                Intent intent1=new Intent(getActivity(), GoOff.class);
                 startActivity(intent1);
 
                 return false;
@@ -88,7 +86,7 @@ public class SmartFragment extends Fragment{
         go_home.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent intent2=new Intent(getActivity(),GoHome.class);
+                Intent intent2=new Intent(getActivity(), GoHome.class);
                 startActivity(intent2);
 
                 return false;
@@ -97,7 +95,7 @@ public class SmartFragment extends Fragment{
         night.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent intent3=new Intent(getActivity(),Night.class);
+                Intent intent3=new Intent(getActivity(), Night.class);
                 startActivity(intent3);
 
                 return false;
@@ -114,9 +112,8 @@ public class SmartFragment extends Fragment{
         addSmartHelpers.add(new AddSmartHelper(R.drawable.air_condition_smart, "空调"));
         addSmartHelpers.add(new AddSmartHelper(R.drawable.curtain_smart, "窗帘"));
         addSmartHelpers.add(new AddSmartHelper(R.drawable.lock_smart, "智能门锁"));
-        adapter = new AddSmartAdapter(addSmartHelpers);
-        addsmart.setAdapter(adapter);
         rvadapter = new AddSmartAdapter(addSmartHelpers);
+        addsmart.setAdapter(rvadapter);
         rvadapter.setOnItemClickListener(new AddSmartAdapter.OnItemClickListener() {
             @Override
             public void OnItemClickListener(View view, int position) {

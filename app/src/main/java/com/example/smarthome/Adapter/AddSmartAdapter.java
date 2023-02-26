@@ -1,18 +1,14 @@
 package com.example.smarthome.Adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smarthome.Activity.AdjustTheLights;
-import com.example.smarthome.Activity.SmartFragment;
 import com.example.smarthome.R;
 
 import java.util.ArrayList;

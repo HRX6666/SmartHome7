@@ -1,4 +1,4 @@
-package com.example.smarthome.Activity;
+package com.example.smarthome.Page_Samrt;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,17 +10,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 
+
 import com.example.smarthome.R;
 
-public class GoOff extends AppCompatActivity {
-    Toolbar go_off_tb;
+public class Night extends AppCompatActivity {
+            Toolbar night_tb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_go_off);
-        go_off_tb=findViewById(R.id.go_off_tb);
-        go_off_tb.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_night);
+        night_tb=findViewById(R.id.night_tb);
+        night_tb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -32,8 +33,8 @@ public class GoOff extends AppCompatActivity {
     }
     private void initcurtain() {
         ArrayAdapter adapter_curtain=ArrayAdapter.createFromResource(getApplicationContext(),R.array.choose_curtain_model, android.R.layout.simple_spinner_item);
-        Spinner sp_dropdown=findViewById(R.id.go_off_curtain);
-         adapter_curtain.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sp_dropdown=findViewById(R.id.night_curtain);
+        adapter_curtain.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_dropdown.setPrompt("请选择模式");
         sp_dropdown.setAdapter( adapter_curtain);
         sp_dropdown.setSelection(0);
@@ -50,7 +51,7 @@ public class GoOff extends AppCompatActivity {
     }
     private void initlights() {
         ArrayAdapter adapter_lights=ArrayAdapter.createFromResource(getApplicationContext(),R.array.choose_lights_model, android.R.layout.simple_spinner_item);
-        Spinner sp_dropdown=findViewById(R.id.go_off_lights);
+        Spinner sp_dropdown=findViewById(R.id.night_lights);
         adapter_lights.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_dropdown.setPrompt("请选择模式");
         sp_dropdown.setAdapter(adapter_lights);
@@ -68,7 +69,7 @@ public class GoOff extends AppCompatActivity {
     }
     private void initmentor() {
         ArrayAdapter adapter_mentor=ArrayAdapter.createFromResource(getApplicationContext(),R.array.choose_mentor, android.R.layout.simple_spinner_item);
-        Spinner sp_dropdown=findViewById(R.id.go_off_mentor);
+        Spinner sp_dropdown=findViewById(R.id.night_mentor);
         adapter_mentor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_dropdown.setPrompt("请选择模式");
         sp_dropdown.setAdapter(adapter_mentor);

@@ -13,21 +13,28 @@
         android:theme="@style/Theme.SmartHome"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.Night"
+            android:name=".DrawingRoom"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.GoHome"
+            android:name=".Page_Samrt.Night"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.GoOff"
+            android:name=".Page_Samrt.GoHome"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Page_Samrt.GoOff"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -41,77 +48,77 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.AdustTheCurtain"
+            android:name=".Page_Samrt.AdustTheCurtain"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.Monitoring"
+            android:name=".Page_Samrt.Monitoring"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.WangGuan"
+            android:name=".Page_Home.WangGuan"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.HomeScene"
+            android:name=".Page_Home.HomeScene"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.Wifi"
+            android:name=".Page_Home.Wifi"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.FingerprintRecognition"
+            android:name=".Page_Home.FingerprintRecognition"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.AdjustTheAirCondition"
+            android:name=".Page_Samrt.AdjustTheAirCondition"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.AdjustTheLights"
+            android:name=".Page_Samrt.AdjustTheLights"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.Set"
+            android:name=".Page_Home.Set"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.Eroll"
+            android:name=".Page_Home.Eroll"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.enter"
+            android:name=".Page_Home.enter"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -125,14 +132,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.AllEquipment"
+            android:name=".Page_Home.AllEquipment"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.SetVoice"
+            android:name=".Page_Home.SetVoice"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -146,7 +153,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.AllHome"
+            android:name=".Page_Home.AllHome"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

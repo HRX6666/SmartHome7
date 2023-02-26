@@ -1,7 +1,6 @@
-package com.example.smarthome.Activity;
+package com.example.smarthome.Page_Home;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,42 +33,42 @@ public class HomeFragment extends Fragment {
         home_set_voice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Intent intent1=new Intent(getActivity(),SetVoice.class);
+              Intent intent1=new Intent(getActivity(), SetVoice.class);
               startActivity(intent1);
             }
         });
         home_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(getActivity(),Set.class);
+                Intent intent1=new Intent(getActivity(), Set.class);
                 startActivity(intent1);
             }
         });
         enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(getActivity(),enter.class);
+                Intent intent1=new Intent(getActivity(), enter.class);
                 startActivity(intent1);
             }
         });
         home_scene.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(getActivity(),HomeScene.class);
+                Intent intent1=new Intent(getActivity(), HomeScene.class);
                 startActivity(intent1);
             }
         });
         home_wifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(getActivity(),Wifi.class);
+                Intent intent1=new Intent(getActivity(), Wifi.class);
                 startActivity(intent1);
             }
         });
         home_wangguan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(getActivity(),WangGuan.class);
+                Intent intent1=new Intent(getActivity(), WangGuan.class);
                 startActivity(intent1);
             }
         });

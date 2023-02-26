@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AdjustTheLights"
+    tools:context=".Page_Samrt.AdjustTheLights"
     android:orientation="vertical"
     android:background="@color/yellow1">
     <androidx.appcompat.widget.Toolbar
@@ -20,16 +20,19 @@
         android:layout_height="300dp"/>
 
     <Button
+        android:id="@+id/open_the_door"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:backgroundTint="@color/yellow2"
         android:text="开门" />
     <Button
+        android:id="@+id/close_the_door"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:backgroundTint="@color/yellow2"
         android:text="锁门" />
     <Button
+        android:id="@+id/alarm"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:backgroundTint="@color/yellow2"
