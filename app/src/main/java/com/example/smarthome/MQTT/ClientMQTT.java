@@ -114,6 +114,7 @@ public class ClientMQTT {
                     Message message=new Message();
                     message.what=30;
                     handler.sendMessage(message);
+                    //666
                 }
             }
         }).start();
