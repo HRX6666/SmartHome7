@@ -10,11 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 
+import com.example.smarthome.Database.Model;
 import com.example.smarthome.R;
 
 public class GoOff extends AppCompatActivity {
     Toolbar go_off_tb;
-
+    private int model;//模式
+    private int curtain_model;
+    private int light_model;
+    private int lock_model;
+    private int heater_model;
+    private Model models;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +35,7 @@ public class GoOff extends AppCompatActivity {
         initcurtain();
         initlights();
         initmentor();
+
     }
     private void initcurtain() {
         ArrayAdapter adapter_curtain=ArrayAdapter.createFromResource(getApplicationContext(),R.array.choose_curtain_model, android.R.layout.simple_spinner_item);
@@ -40,6 +47,8 @@ public class GoOff extends AppCompatActivity {
         sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position1, long id) {
+                models.setCurtain_model(position1);//直接updateAll？
+                models.save();
             }
 
             @Override
@@ -58,6 +67,9 @@ public class GoOff extends AppCompatActivity {
         sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position2, long id) {
+                models.setLight_model(position2);
+
+
             }
 
             @Override
@@ -76,6 +88,8 @@ public class GoOff extends AppCompatActivity {
         sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position3, long id) {
+                models.setLight_model(position3);
+
             }
 
             @Override

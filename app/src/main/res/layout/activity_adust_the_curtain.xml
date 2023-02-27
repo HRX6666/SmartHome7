@@ -50,6 +50,18 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/curtain_choose_home"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:spinnerMode="dropdown"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical">
         <Button
             android:id="@+id/open_mid"
             android:layout_width="100dp"
@@ -71,6 +83,7 @@
     </RelativeLayout>
 
     <SeekBar
+
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:splitTrack="true"

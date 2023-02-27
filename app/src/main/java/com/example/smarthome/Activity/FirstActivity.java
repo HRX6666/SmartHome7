@@ -10,8 +10,11 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-
+//import org.litepal.LitePal;
+//import org.litepal.tablemanager.Connector;
 import com.example.smarthome.R;
+
+import org.litepal.tablemanager.Connector;
 
 public class FirstActivity extends AppCompatActivity {
     Animation topAnimation,bottomAnimation,middleAnimation;
@@ -49,6 +52,7 @@ public class FirstActivity extends AppCompatActivity {
                finish();
            }
        },5000);
+        Connector.getDatabase();
     }
 
 }
