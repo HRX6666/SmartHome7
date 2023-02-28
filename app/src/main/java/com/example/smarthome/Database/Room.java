@@ -7,9 +7,34 @@ import java.util.List;
 public class Room extends LitePalSupport {
     private int category;
 
-
+    private List<Light> lightList;
+    private List<Curtain> curtainList;
+    private List<AirConditioner> airConditionerList;
     private List<Device> deviceList;
 
+    public List<Light> getLightList() {
+        return lightList;
+    }
+
+    public void setLightList(List<Light> lightList) {
+        this.lightList = lightList;
+    }
+
+    public List<Curtain> getCurtainList() {
+        return curtainList;
+    }
+
+    public void setCurtainList(List<Curtain> curtainList) {
+        this.curtainList = curtainList;
+    }
+
+    public List<AirConditioner> getAirConditionerList() {
+        return airConditionerList;
+    }
+
+    public void setAirConditionerList(List<AirConditioner> airConditionerList) {
+        this.airConditionerList = airConditionerList;
+    }
 
     public int getCategory() {
         return category;

@@ -8,10 +8,16 @@ public class Device extends LitePalSupport {
     private String source_short_address;
     private int network_flag;
 //    private int source_data;//这玩意是开关键决定的，不需要保存
-    private int flag;//是否同意允许家器接入
+    private int flag;//是否同意允许该家器接入
+    private int light_brightness;
+    private int light_temp;
 
+    private int air_HotOrCold;
+    private int air_temp;
+
+    private int curtain_extent;
     //表关联
-    private Model model;
+    private Model model;//离家模式等等等。。。。。。
     private Room room;
 
 //    public int getSource_data() {

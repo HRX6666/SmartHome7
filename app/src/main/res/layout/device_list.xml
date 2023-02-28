@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/device_image"
+        android:layout_width="177dp"
+        android:layout_height="160dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/add_im"
+            android:layout_width="138dp"
+            android:layout_height="134dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg2" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/add_tv"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:fontFamily="sans-serif-black"-->
+        <!--            android:text="M"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="20sp" />-->
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/category"
+        android:layout_width="234dp"
+        android:layout_height="57dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/device_category"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:text="类型:" />
+
+        <TextView
+            android:id="@+id/device_category_display"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:text="电灯泡" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/judge"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="是否同意入网"
+        app:layout_constraintTop_toBottomOf="@+id/category"
+        app:layout_constraintLeft_toRightOf="@+id/device_image"
+        tools:layout_editor_absoluteX="181dp"
+        tools:layout_editor_absoluteY="60dp" />
+
+    <LinearLayout
+        android:layout_width="225dp"
+        android:layout_height="72dp"
+        app:layout_constraintLeft_toRightOf="@+id/device_image"
+        app:layout_constraintTop_toBottomOf="@+id/judge"
+        tools:layout_editor_absoluteX="181dp"
+        tools:layout_editor_absoluteY="91dp">
+
+        <Button
+            android:id="@+id/approve"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="同意"
+            tools:layout_editor_absoluteX="173dp"
+            tools:layout_editor_absoluteY="114dp" />
+
+        <Button
+            android:id="@+id/reject"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:text="拒绝"
+            tools:layout_editor_absoluteX="273dp"
+            tools:layout_editor_absoluteY="114dp" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

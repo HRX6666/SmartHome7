@@ -21,13 +21,6 @@ public class HuijuFrament extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        clientMQTT = new ClientMQTT("light");
-        try {
-            clientMQTT.Mqtt_innit();
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
-        clientMQTT.startReconnect(getContext());
 
         return inflater.inflate(R.layout.huiju_fragment,container,false);
 

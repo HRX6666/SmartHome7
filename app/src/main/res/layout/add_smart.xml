@@ -7,17 +7,19 @@
     app:cardElevation="8dp"
     android:layout_margin="10dp"
     android:descendantFocusability="blocksDescendants">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
+
         <ImageView
             android:id="@+id/add_im"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-             android:scaleType="centerCrop"
-            android:src="@drawable/bg2"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg2" />
 
         <TextView
             android:id="@+id/add_tv"

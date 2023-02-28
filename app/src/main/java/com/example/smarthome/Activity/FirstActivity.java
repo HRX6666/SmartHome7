@@ -12,15 +12,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 //import org.litepal.LitePal;
 //import org.litepal.tablemanager.Connector;
+import com.example.smarthome.MQTT.ClientMQTT;
+import com.example.smarthome.Page_Samrt.AdjustTheLights;
 import com.example.smarthome.R;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.litepal.tablemanager.Connector;
 
 public class FirstActivity extends AppCompatActivity {
     Animation topAnimation,bottomAnimation,middleAnimation;
     View first,second,third,fourth,fifth,sixth;
     TextView app_name,tagLine;
-
+    private ClientMQTT clientMQTT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,13 @@ public class FirstActivity extends AppCompatActivity {
         sixth.setAnimation(topAnimation);
        app_name.setAnimation(middleAnimation);
        tagLine.setAnimation(bottomAnimation);
+        clientMQTT=new ClientMQTT("light");
+        try {
+            clientMQTT.Mqtt_innit();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+        clientMQTT.startReconnect(FirstActivity.this);
        new Handler().postDelayed(new Runnable() {
            @Override
            public void run() {

@@ -11,14 +11,33 @@ public class Model extends LitePalSupport {
     private int lock_model;
     private int heater_model;
 
+    private List<Light> lightList;
+    private List<Curtain> curtainList;
+    private List<AirConditioner> airConditionerList;
     private List<Device> deviceList;
 
-    public List<Device> getDeviceList() {
-        return deviceList;
+    public List<Light> getLightList() {
+        return lightList;
     }
 
-    public void setDeviceList(List<Device> deviceList) {
-        this.deviceList = deviceList;
+    public void setLightList(List<Light> lightList) {
+        this.lightList = lightList;
+    }
+
+    public List<Curtain> getCurtainList() {
+        return curtainList;
+    }
+
+    public void setCurtainList(List<Curtain> curtainList) {
+        this.curtainList = curtainList;
+    }
+
+    public List<AirConditioner> getAirConditionerList() {
+        return airConditionerList;
+    }
+
+    public void setAirConditionerList(List<AirConditioner> airConditionerList) {
+        this.airConditionerList = airConditionerList;
     }
 
     public int getModel() {

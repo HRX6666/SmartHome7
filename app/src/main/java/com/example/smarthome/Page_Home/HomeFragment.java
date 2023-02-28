@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.smarthome.R;
 
 public class HomeFragment extends Fragment {
-    TextView home_set_voice,home_scene,home_wifi,home_wangguan,home_set,enroll;
+    TextView home_set_voice,home_scene,home_wifi,home_wangguan,home_set,enroll,home_test;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,6 +30,14 @@ public class HomeFragment extends Fragment {
         home_wangguan=getActivity().findViewById(R.id.home_wangguan);
         home_set=getActivity().findViewById(R.id.home_set);
         enroll=getActivity().findViewById(R.id.enroll);
+        home_test=getActivity().findViewById(R.id.home_test);
+        home_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1=new Intent(getActivity(), FindDevices.class);
+                startActivity(intent1);
+            }
+        });
         home_set_voice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

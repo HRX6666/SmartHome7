@@ -41,7 +41,7 @@ public class ClientMQTT {
     public  static final String serverURI="tcp://pan.kexie.fowo.eu.org:1883";
     private String device_id=MqttClient.generateClientId();
     private String topicName;
-    private final MemoryPersistence memoryPersistence=new MemoryPersistence();
+    private  MemoryPersistence memoryPersistence=new MemoryPersistence();
     public ClientMQTT( String topicName) {
         this.topicName = topicName;
     }
@@ -105,6 +105,7 @@ public class ClientMQTT {
                         //设置连接的密码
                         options.setPassword(ClientMQTT.password.toCharArray());
                         client.connect(options);
+                        client.subscribe("topic");//订阅
                         Message message=new Message();
                         message.what=31;
                         handler.sendMessage(message);
@@ -158,6 +159,7 @@ public class ClientMQTT {
         };
 
     }
+
     public void publishMessagePlus(String timestamp,String firmware_version,String misc,String target_short_address,String target_command,String target_data)
     {
         if (client == null || !client.isConnected()) {
@@ -173,6 +175,9 @@ public class ClientMQTT {
 
             e.printStackTrace();
         }
+    }
+    public void closeContact() throws MqttException {
+        client.close();
     }
 
 }

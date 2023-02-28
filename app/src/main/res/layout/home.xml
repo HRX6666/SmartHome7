@@ -69,6 +69,16 @@
         android:layout_marginTop="25dp"
         android:drawableEnd="@drawable/wangguan"/>
     <TextView
+        android:id="@+id/home_test"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text=" Test"
+        android:textSize="15dp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/lighthui"
+        android:layout_marginTop="25dp"
+        android:drawableEnd="@drawable/wangguan"/>
+    <TextView
         android:id="@+id/home_set"
         android:layout_width="match_parent"
         android:layout_height="30dp"
