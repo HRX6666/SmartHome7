@@ -10,10 +10,18 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.smarthome.Database.Device;
+import com.example.smarthome.Database.Room;
 import com.example.smarthome.MQTT.ClientMQTT;
 import com.example.smarthome.R;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.litepal.LitePal;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AdustTheCurtain extends AppCompatActivity {
     Toolbar curtain_tb;
@@ -24,6 +32,7 @@ public class AdustTheCurtain extends AppCompatActivity {
     private Button bt_openMid;
     private Button bt_closeCurtain;
     private int home_choose;
+    private String s_home_choose;
     //下拉框进入默认是全屋，进入界面时应该根服务器同步数据，设置当前设备状态是怎么样的，那个seekbar也一样，要根据实际情况来变
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +51,38 @@ public class AdustTheCurtain extends AppCompatActivity {
             e.printStackTrace();
         }
         clientMQTT.startReconnect(AdustTheCurtain.this);
-        bt_openMid.setOnClickListener(new View.OnClickListener() {
+        List<Device> devicelist= LitePal.where("flag = ? and source_command = ?","1","0x03").find(Device.class);
+        List<Map<String,String>> deviceList=new ArrayList<>();
+        Map<String,String> map=new HashMap<>();
+//        for(Device device:devicelist){
+//            Room room=device.getRoom();
+//            int a=room.getCategory();
+//            String home="0x0"+a;
+//            if(home.equals(s_home_choose)){
+//        //  map.put("")
+//
+//            deviceList.add(map);
+//            }
+//
+//
+//        }
+        bt_openAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (home_choose){
-                    case 1:;
-                    case 2:;
-                    case 3:;
-                    case 4:;
+                for(Device device:devicelist){
+                    Room room=device.getRoom();
+                    int a=room.getCategory();
+                    String home="0x0"+a;
+                    if(home.equals(s_home_choose)){
+                        map.put("misc","0x00");
+                        map.put("target_short_address",device.getSource_short_address());
+                        map.put("target_command",device.getSource_command());
+                        clientMQTT.publishMessagePlusWithMap(map,"0x01");
+
+                    }
 
                 }
+                //clientMQTT.publishMessagePlusWithMap(deviceList);
                 clientMQTT.publishMessagePlus("2023-02-19T08:30:00Z","1.2.3",null,"0x4AA5","0x03", "0x0101");
             }
         });
@@ -65,11 +96,17 @@ public class AdustTheCurtain extends AppCompatActivity {
         bt_closeCurtain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (home_choose){
-                    case 1:;
-                    case 2:;
-                    case 3:;
-                    case 4:;
+                for(Device device:devicelist){
+                    Room room=device.getRoom();
+                    int a=room.getCategory();
+                    String home="0x0"+a;
+                    if(home.equals(s_home_choose)){
+                        map.put("misc","0x00");
+                        map.put("target_short_address",device.getSource_short_address());
+                        map.put("target_command",device.getSource_command());
+                        clientMQTT.publishMessagePlusWithMap(map,"0x00");
+
+                    }
 
 
                 }
@@ -90,7 +127,8 @@ public class AdustTheCurtain extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int arg1, long id) {
 //                Toast.makeText(AdustTheCurtain.this, String.valueOf(arg1), Toast.LENGTH_SHORT).show();
 //                Toast.makeText(AdustTheCurtain.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-                    home_choose=arg1;
+                    home_choose=arg1;//转换为16进制加一个0x0
+                    s_home_choose="0x0"+home_choose;
                 }
 
                 @Override

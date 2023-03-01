@@ -12,7 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smarthome.Database.Device;
+import com.example.smarthome.MQTT.ClientMQTT;
+import com.example.smarthome.Page_Samrt.AdjustTheLights;
 import com.example.smarthome.R;
+
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +26,7 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
   //那三个类弃用了，只用device类
     private List<Map<String,String>> mDeviceList;
     private Context context;
-
+    private ClientMQTT clientMQTT;
     public FindDeviceAdapter(List<Map<String,String>> deviceList){
         mDeviceList=deviceList;
     }
@@ -41,6 +46,7 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
             bt_approve=view.findViewById(R.id.approve);
             imageView=view.findViewById(R.id.device_image1);
 
+
         }
     }
 
@@ -50,25 +56,22 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
     public FindDeviceAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.device_list,parent,false);
         final ViewHolder holder=new ViewHolder(view);
-//        holder.bt_approve.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//        holder.bt_reject.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
 
+        clientMQTT=new ClientMQTT("light");
+        try {
+            clientMQTT.Mqtt_innit();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+        clientMQTT.startReconnect(parent.getContext());
         return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull FindDeviceAdapter.ViewHolder holder, int position) {
-        String category=mDeviceList.get(position).get("source_command");//这个怕是发现一次，保存是否组网，没组网就显示。传入的list、应该在外面先判断一下再传入未租网的list，
+        //直接
+        String category=mDeviceList.get(position).get("source_command");//在解析完中控传过来的数据，数据早已存入数据库了，现在的工作只是Update就可以，保存是否组网，没组网就显示这个设备，传入的list、应该在外面先判断一下再传入未租网的list，
+        String source_long_address=mDeviceList.get(position).get("source_long_address");
         int source_command=Integer.valueOf(category);
         switch (source_command){
             case 1:holder.imageView.setImageResource(R.drawable.lights_smart);break;
@@ -84,13 +87,18 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
         holder.bt_approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Device device=new Device();
+                device.setFlag(1);
+                device.updateAll("source_long_address = ?",source_long_address);
+                //向中控发送APP同意入网信息
+//                clientMQTT.publishMessagePlus();
 
             }
         });
         holder.bt_reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //发送拒绝指令
             }
         });
     }

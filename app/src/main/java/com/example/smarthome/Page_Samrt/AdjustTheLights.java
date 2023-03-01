@@ -120,7 +120,7 @@ public class AdjustTheLights extends AppCompatActivity {
                 String[] spinner_arr= getResources().getStringArray(R.array.choose_lights_model);
                 String choose_model=spinner_arr[position];
 //                Toast.makeText(AdjustTheLights.this, choose_model, Toast.LENGTH_SHORT).show();
-                Toast.makeText(AdjustTheLights.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AdjustTheLights.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
                 //灯控模式
                 switch (position){//不同房间类型和全屋进入应该是有不同短地址来区分，通过判断选择哪个屋子执行，在根据此来发送不同的短地址
                     case 1:clientMQTT.publishMessagePlus("2023-02-19T08:30:00Z","1.2.3",null,"0x4AA5","0x01", "0x0105");

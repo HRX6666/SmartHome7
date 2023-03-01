@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.smarthome.Database.Device;
 
+import org.litepal.LitePal;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,17 +75,26 @@ public class ParseJson {
 
             JSONObject jsonObject1=jsonArray.getJSONObject(i);
             map.put("source_short_address",jsonObject1.getString("source_short_address"));
+            map.put("source_long_address",jsonObject1.getString("source_long_address"));
             map.put("network_flag",jsonObject1.getString("network_flag"));
             map.put("source_command",jsonObject1.getString("source_command"));//设备类型
             map.put("source_data",jsonObject1.getString("source_data"));
             map.put("misc",jsonObject1.getString("misc"));
+            if(LitePal.where("source_long_address = ?",jsonObject1.getString("source_long_address"))==null){
+                Device device=new Device();
+                device.setSource_long_address(jsonObject1.getString("source_long_address"));
+                device.setSource_short_address(jsonObject1.getString("source_short_address"));
+                device.setNetwork_flag(jsonObject1.getInteger("network_flag"));
+                device.setSource_command(jsonObject1.getInteger("source_command"));
+                device.setFlag(0);
+                device.save();
+            }
             //储存数据到数据库
-            Device device=new Device();
-            device.setSource_short_address(jsonObject1.getString("source_short_address"));
-            device.setNetwork_flag(jsonObject1.getInteger("network_flag"));
-            device.setSource_command(jsonObject1.getInteger("source_command"));
-            device.save();
+
             devicesList.add(map);
+
+
+
         }
     }
 

@@ -3,7 +3,7 @@ package com.example.smarthome.Database;
 import org.litepal.crud.LitePalSupport;
 
 public class Device extends LitePalSupport {
-    private int source_command;//种类，根据种类查询
+    private String source_command;//种类，根据种类查询
     private String source_long_address;
     private String source_short_address;
     private int network_flag;
@@ -28,12 +28,53 @@ public class Device extends LitePalSupport {
 //        this.source_data = source_data;
 //    }
 
-    public int getSource_command() {
+
+    public String getSource_command() {
         return source_command;
     }
 
-    public void setSource_command(int source_command) {
+    public void setSource_command(String source_command) {
         this.source_command = source_command;
+    }
+
+    public int getLight_brightness() {
+        return light_brightness;
+    }
+
+    public void setLight_brightness(int light_brightness) {
+        this.light_brightness = light_brightness;
+    }
+
+    public int getLight_temp() {
+        return light_temp;
+    }
+
+    public void setLight_temp(int light_temp) {
+        this.light_temp = light_temp;
+    }
+
+    public int getAir_HotOrCold() {
+        return air_HotOrCold;
+    }
+
+    public void setAir_HotOrCold(int air_HotOrCold) {
+        this.air_HotOrCold = air_HotOrCold;
+    }
+
+    public int getAir_temp() {
+        return air_temp;
+    }
+
+    public void setAir_temp(int air_temp) {
+        this.air_temp = air_temp;
+    }
+
+    public int getCurtain_extent() {
+        return curtain_extent;
+    }
+
+    public void setCurtain_extent(int curtain_extent) {
+        this.curtain_extent = curtain_extent;
     }
 
     public int getFlag() {
@@ -84,12 +125,7 @@ public class Device extends LitePalSupport {
         this.room = room;
     }
 
-    public Device(int source_command, String source_long_address, String source_short_address, int network_flag) {
-        this.source_command = source_command;
-        this.source_long_address = source_long_address;
-        this.source_short_address = source_short_address;
-        this.network_flag = network_flag;
-    }
+
 
     public Device() {
     }

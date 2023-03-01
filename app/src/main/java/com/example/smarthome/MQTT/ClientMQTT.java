@@ -21,6 +21,9 @@ import org.fusesource.mqtt.client.MQTT;
 import org.fusesource.mqtt.codec.MessageSupport;
 
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -159,7 +162,42 @@ public class ClientMQTT {
         };
 
     }
+    //这边的map改成List<Map<String,String>>，毕竟设备不只是一个
+    public void publishMessagePlusWithMap( Map<String,String> map,String target_data){
+        if (client == null || !client.isConnected()) {
 
+            return;
+        }
+        MqttMessage message = new MqttMessage();
+        JsonString jsonString=new JsonString("2023-02-19T08:30:00Z","1.2.3",userName,device_id,map.get("misc"),map.get("target_short_address"),map.get("target_command"),target_data);
+        message.setPayload(jsonString.toString().getBytes());
+        try {
+            client.publish("TestTopic",message);//上传信息
+        } catch (MqttException e) {
+
+            e.printStackTrace();
+        }
+    }
+    public void publishMessagePlusWithMap(List<Map<String,String>> deviceList){
+
+        Map<String,String> map=new HashMap<>();
+        for (int i = 0; i <deviceList.size(); i++) {
+             map=deviceList.get(i);
+
+        if (client == null || !client.isConnected()) {
+
+            return;
+        }
+        MqttMessage message = new MqttMessage();
+        JsonString jsonString=new JsonString("2023-02-19T08:30:00Z","1.2.3",userName,device_id,map.get("misc"),map.get("target_short_address"),map.get("target_command"),map.get("target_data"));
+        message.setPayload(jsonString.toString().getBytes());
+        try {
+            client.publish("TestTopic",message);//上传信息
+        } catch (MqttException e) {
+
+            e.printStackTrace();
+        }
+    }}
     public void publishMessagePlus(String timestamp,String firmware_version,String misc,String target_short_address,String target_command,String target_data)
     {
         if (client == null || !client.isConnected()) {
