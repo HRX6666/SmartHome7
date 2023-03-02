@@ -45,7 +45,7 @@ public class ParseJson {
 
     //这个是如果app向中控发送数据请求具体设备信息的
 
-    void parseJson(String jsonData, Map<String,String> map){
+    public void parseJson(String jsonData, Map<String,String> map){
         JSONObject jsonObject=JSONObject.parseObject(jsonData);
         JSONArray sensors=jsonObject.getJSONArray("sensors");
         JSONArray jsonArray= JSON.parseArray(sensors.toString());
@@ -63,8 +63,29 @@ public class ParseJson {
 
 
     }
+public void parseJsonAndUpdateDatabase(String jsonData){
 
-    void parseJsonAndUpdateDatabase(String jsonData, List<Map<String,String>> devicesList){
+    JSONObject jsonObject=JSONObject.parseObject(jsonData);
+    JSONArray sensors=jsonObject.getJSONArray("sensors");
+    JSONArray jsonArray= JSON.parseArray(sensors.toString());
+    int size=jsonArray.size();
+
+    for (int i = 0; i < size; i++) {
+
+        JSONObject jsonObject1=jsonArray.getJSONObject(i);
+        if(LitePal.where("source_long_address = ?",jsonObject1.getString("source_long_address"))==null){
+            Device device=new Device();
+            device.setSource_long_address(jsonObject1.getString("source_long_address"));
+            device.setSource_short_address(jsonObject1.getString("source_short_address"));
+            device.setNetwork_flag(jsonObject1.getInteger("network_flag"));
+            device.setSource_command(jsonObject1.getString("source_command"));
+            device.setMisc(jsonObject1.getString("misc"));
+            device.setFlag(0);
+            device.save();
+        }
+
+}}
+    public void parseJsonAndUpdateDatabase(String jsonData, List<Map<String,String>> devicesList){
         Map<String,String> map=new HashMap<>();
         JSONObject jsonObject=JSONObject.parseObject(jsonData);
         JSONArray sensors=jsonObject.getJSONArray("sensors");
@@ -85,7 +106,7 @@ public class ParseJson {
                 device.setSource_long_address(jsonObject1.getString("source_long_address"));
                 device.setSource_short_address(jsonObject1.getString("source_short_address"));
                 device.setNetwork_flag(jsonObject1.getInteger("network_flag"));
-                device.setSource_command(jsonObject1.getInteger("source_command"));
+                device.setSource_command(jsonObject1.getString("source_command"));
                 device.setFlag(0);
                 device.save();
             }

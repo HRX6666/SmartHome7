@@ -54,6 +54,7 @@ public class FirstActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         clientMQTT.startReconnect(FirstActivity.this);
+
        new Handler().postDelayed(new Runnable() {
            @Override
            public void run() {

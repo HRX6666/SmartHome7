@@ -46,9 +46,9 @@ public class FindDevices extends AppCompatActivity {
         for(Device devices:devicelist){
             String source_long_address=devices.getSource_long_address();
             int flag=devices.getFlag();
-            int source_command=devices.getSource_command();
+            String source_command=devices.getSource_command();
             Map<String,String> map=new HashMap<>();
-            map.put("source_command",String.valueOf(source_command));
+            map.put("source_command",source_command);
             map.put("source_long_address",String.valueOf(source_long_address));
             map.put("flag",String.valueOf(flag));
             deviceList.add(map);

@@ -112,6 +112,7 @@ public class SmartFragment extends Fragment{
         addSmartHelpers.add(new AddSmartHelper(R.drawable.air_condition_smart, "空调"));
         addSmartHelpers.add(new AddSmartHelper(R.drawable.curtain_smart, "窗帘"));
         addSmartHelpers.add(new AddSmartHelper(R.drawable.lock_smart, "智能门锁"));
+        addSmartHelpers.add(new AddSmartHelper(R.drawable.music,"智能音响"));
         rvadapter = new AddSmartAdapter(addSmartHelpers);
         addsmart.setAdapter(rvadapter);
         rvadapter.setOnItemClickListener(new AddSmartAdapter.OnItemClickListener() {

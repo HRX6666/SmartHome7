@@ -8,6 +8,7 @@ import android.os.Message;
 import android.widget.Toast;
 
 import com.example.smarthome.Json.JsonString;
+import com.example.smarthome.Json.ParseJson;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -85,6 +86,9 @@ public class ClientMQTT {
 
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
+                String jsonData=new String(message.getPayload());
+                ParseJson parseJson=new ParseJson();
+                parseJson.parseJsonAndUpdateDatabase(jsonData);
                 System.out.println("messageArrived----------");
             }
 
@@ -108,7 +112,7 @@ public class ClientMQTT {
                         //设置连接的密码
                         options.setPassword(ClientMQTT.password.toCharArray());
                         client.connect(options);
-                        client.subscribe("topic");//订阅
+                        client.subscribe("ESPtoAPP");//订阅、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
                         Message message=new Message();
                         message.what=31;
                         handler.sendMessage(message);
@@ -172,7 +176,7 @@ public class ClientMQTT {
         JsonString jsonString=new JsonString("2023-02-19T08:30:00Z","1.2.3",userName,device_id,map.get("misc"),map.get("target_short_address"),map.get("target_command"),target_data);
         message.setPayload(jsonString.toString().getBytes());
         try {
-            client.publish("TestTopic",message);//上传信息
+            client.publish("APPtoESP",message);//上传信息
         } catch (MqttException e) {
 
             e.printStackTrace();

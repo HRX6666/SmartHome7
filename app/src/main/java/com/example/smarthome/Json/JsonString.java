@@ -34,7 +34,7 @@ public class JsonString {
                 "\"other_data\": {" +
                 "\"misc\":\""+misc+
                 "\"}," +
-                "\"sensors\": [" +
+                "\"peripherals\": [" +
                 "{" +
                 "\"target_short_address\":\""+target_short_address+" \"," +
                 "\"target_command\": \""+target_command+"\"," +

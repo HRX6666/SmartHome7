@@ -6,6 +6,7 @@ public class Device extends LitePalSupport {
     private String source_command;//种类，根据种类查询
     private String source_long_address;
     private String source_short_address;
+    private String misc;
     private int network_flag;
 //    private int source_data;//这玩意是开关键决定的，不需要保存
     private int flag;//是否同意允许该家器接入
@@ -28,6 +29,14 @@ public class Device extends LitePalSupport {
 //        this.source_data = source_data;
 //    }
 
+
+    public String getMisc() {
+        return misc;
+    }
+
+    public void setMisc(String misc) {
+        this.misc = misc;
+    }
 
     public String getSource_command() {
         return source_command;
