@@ -112,7 +112,7 @@ public class ClientMQTT {
                         //设置连接的密码
                         options.setPassword(ClientMQTT.password.toCharArray());
                         client.connect(options);
-                        client.subscribe("ESPtoAPP");//订阅、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+                        client.subscribe("ESP32toAPP  ");//订阅、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
                         Message message=new Message();
                         message.what=31;
                         handler.sendMessage(message);
@@ -176,7 +176,7 @@ public class ClientMQTT {
         JsonString jsonString=new JsonString("2023-02-19T08:30:00Z","1.2.3",userName,device_id,map.get("misc"),map.get("target_short_address"),map.get("target_command"),target_data);
         message.setPayload(jsonString.toString().getBytes());
         try {
-            client.publish("APPtoESP",message);//上传信息
+            client.publish("APPtoESP32",message);//上传信息
         } catch (MqttException e) {
 
             e.printStackTrace();
@@ -196,7 +196,7 @@ public class ClientMQTT {
         JsonString jsonString=new JsonString("2023-02-19T08:30:00Z","1.2.3",userName,device_id,map.get("misc"),map.get("target_short_address"),map.get("target_command"),map.get("target_data"));
         message.setPayload(jsonString.toString().getBytes());
         try {
-            client.publish("TestTopic",message);//上传信息
+            client.publish("APPtoESP32",message);//上传信息
         } catch (MqttException e) {
 
             e.printStackTrace();
@@ -212,7 +212,7 @@ public class ClientMQTT {
         JsonString jsonString=new JsonString("2023-02-19T08:30:00Z","1.2.3",userName,device_id,misc,target_short_address,target_command,target_data);
         message.setPayload(jsonString.toString().getBytes());
         try {
-            client.publish("TestTopic",message);//上传信息
+            client.publish("APPtoESP32",message);//上传信息
         } catch (MqttException e) {
 
             e.printStackTrace();

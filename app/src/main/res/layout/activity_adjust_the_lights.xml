@@ -26,10 +26,10 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_marginTop="30dp"
-            android:drawableStart="@drawable_the_lights_off"
+
             android:fontFamily="sans-serif-black"
             android:text=" 智能灯"
-            android:textColor="@colorghthui"
+
             android:textSize="15dp" />
 
         <com.example.smarthome.View.FButton
