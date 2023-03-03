@@ -10,6 +10,8 @@ public class Device extends LitePalSupport {
     private String network_flag;//电器是否自动入网(电器重启后自动组网)
     private String source_data;//这玩意是开关键决定的，不需要保存
     private int flag;//是否同意允许该家器接入
+    private int isUpdate;//判断app开启电器入网是否收到了这条电器信息
+
     private int light_brightness;//亮度
     private int light_temp;//色温
 
@@ -29,6 +31,22 @@ public class Device extends LitePalSupport {
 //        this.source_data = source_data;
 //    }
 
+
+    public int getIsUpdate() {
+        return isUpdate;
+    }
+
+    public void setIsUpdate(int isUpdate) {
+        this.isUpdate = isUpdate;
+    }
+
+    public String getSource_data() {
+        return source_data;
+    }
+
+    public void setSource_data(String source_data) {
+        this.source_data = source_data;
+    }
 
     public String getMisc() {
         return misc;

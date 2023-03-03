@@ -172,6 +172,22 @@ public class ClientMQTT {
         };
 
     }
+    public void Subscribe(){
+        try {
+            client.subscribe("ESP32toAPP",0);
+
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+    public void unSubscribe(){
+        try {
+            client.unsubscribe("ESP32toAPP");
+
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
     //这边的map改成List<Map<String,String>>，毕竟设备不只是一个
     public void publishMessagePlusWithMap( Map<String,String> map,String target_data){
         if (client == null || !client.isConnected()) {

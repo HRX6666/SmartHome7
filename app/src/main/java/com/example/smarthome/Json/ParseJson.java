@@ -80,6 +80,7 @@ public void parseJsonAndUpdateDatabase(String jsonData){
                device.setSource_short_address(jsonObject1.getString("source_short_address"));
                device.setNetwork_flag(jsonObject1.getString("network_flag"));
                device.setSource_command(jsonObject1.getString("source_command"));
+               device.setIsUpdate(1);
                device.setMisc(jsonObject1.getString("misc"));
                device.setFlag(0);
                device.save();
