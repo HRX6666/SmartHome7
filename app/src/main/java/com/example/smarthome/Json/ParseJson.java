@@ -73,17 +73,17 @@ public void parseJsonAndUpdateDatabase(String jsonData){
     for (int i = 0; i < size; i++) {
 
         JSONObject jsonObject1=jsonArray.getJSONObject(i);
-        if(LitePal.where("source_long_address = ?",jsonObject1.getString("source_long_address"))==null){
-            Device device=new Device();
-            device.setSource_long_address(jsonObject1.getString("source_long_address"));
-            device.setSource_short_address(jsonObject1.getString("source_short_address"));
-            device.setNetwork_flag(jsonObject1.getInteger("network_flag"));
-            device.setSource_command(jsonObject1.getString("source_command"));
-            device.setMisc(jsonObject1.getString("misc"));
-            device.setFlag(0);
-            device.save();
-        }
-
+        List<Device> devices=LitePal.where("source_long_address = ? and flag = ?",jsonObject1.getString("source_long_address"),"0").find(Device.class);
+           if(devices.isEmpty()){
+               Device device=new Device();
+               device.setSource_long_address(jsonObject1.getString("source_long_address"));
+               device.setSource_short_address(jsonObject1.getString("source_short_address"));
+               device.setNetwork_flag(jsonObject1.getString("network_flag"));
+               device.setSource_command(jsonObject1.getString("source_command"));
+               device.setMisc(jsonObject1.getString("misc"));
+               device.setFlag(0);
+               device.save();
+           }
 }}
     public void parseJsonAndUpdateDatabase(String jsonData, List<Map<String,String>> devicesList){
         Map<String,String> map=new HashMap<>();
@@ -101,17 +101,18 @@ public void parseJsonAndUpdateDatabase(String jsonData){
             map.put("source_command",jsonObject1.getString("source_command"));//设备类型
             map.put("source_data",jsonObject1.getString("source_data"));
             map.put("misc",jsonObject1.getString("misc"));
-            if(LitePal.where("source_long_address = ?",jsonObject1.getString("source_long_address"))==null){
-                Device device=new Device();
-                device.setSource_long_address(jsonObject1.getString("source_long_address"));
-                device.setSource_short_address(jsonObject1.getString("source_short_address"));
-                device.setNetwork_flag(jsonObject1.getInteger("network_flag"));
-                device.setSource_command(jsonObject1.getString("source_command"));
-                device.setFlag(0);
-                device.save();
-            }
-            //储存数据到数据库
+            Device device=new Device();
+            device.setSource_long_address(jsonObject1.getString("source_long_address"));
+            device.setSource_short_address(jsonObject1.getString("source_short_address"));
+            device.setNetwork_flag(jsonObject1.getString("network_flag"));
+            device.setSource_command(jsonObject1.getString("source_command"));
+            device.setMisc(jsonObject1.getString("misc"));
+            device.setFlag(0);
+            boolean a=device.isSaved();
 
+            if(device.isSaved())
+                return;
+            device.save();
             devicesList.add(map);
 
 

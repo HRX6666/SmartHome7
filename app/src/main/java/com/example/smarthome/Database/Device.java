@@ -6,20 +6,20 @@ public class Device extends LitePalSupport {
     private String source_command;//种类，根据种类查询
     private String source_long_address;
     private String source_short_address;
-    private String misc;
-    private int network_flag;
-//    private int source_data;//这玩意是开关键决定的，不需要保存
+    private String misc;//
+    private String network_flag;//电器是否自动入网(电器重启后自动组网)
+    private String source_data;//这玩意是开关键决定的，不需要保存
     private int flag;//是否同意允许该家器接入
-    private int light_brightness;
-    private int light_temp;
+    private int light_brightness;//亮度
+    private int light_temp;//色温
 
-    private int air_HotOrCold;
-    private int air_temp;
+    private int air_HotOrCold;//制热还是制冷
+    private int air_temp;//空调温度
 
-    private int curtain_extent;
+    private int curtain_extent;//窗帘程度
     //表关联
     private Model model;//离家模式等等等。。。。。。
-    private Room room;
+    private Room room;//房间
 
 //    public int getSource_data() {
 //        return source_data;
@@ -110,11 +110,11 @@ public class Device extends LitePalSupport {
         this.source_short_address = source_short_address;
     }
 
-    public int getNetwork_flag() {
+    public String getNetwork_flag() {
         return network_flag;
     }
 
-    public void setNetwork_flag(int network_flag) {
+    public void setNetwork_flag(String network_flag) {
         this.network_flag = network_flag;
     }
 

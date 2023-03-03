@@ -77,7 +77,7 @@ public class AdustTheCurtain extends AppCompatActivity {
                         map.put("misc","0x00");
                         map.put("target_short_address",device.getSource_short_address());
                         map.put("target_command",device.getSource_command());
-                        clientMQTT.publishMessagePlusWithMap(map,"0x01");
+//                        clientMQTT.publishMessagePlusWithMap(map,"0x01");
 
                     }
 
@@ -104,7 +104,7 @@ public class AdustTheCurtain extends AppCompatActivity {
                         map.put("misc","0x00");
                         map.put("target_short_address",device.getSource_short_address());
                         map.put("target_command",device.getSource_command());
-                        clientMQTT.publishMessagePlusWithMap(map,"0x00");
+//                        clientMQTT.publishMessagePlusWithMap(map,"0x00");
 
                     }
 

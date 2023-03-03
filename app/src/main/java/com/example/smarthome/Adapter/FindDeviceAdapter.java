@@ -27,6 +27,7 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
     private List<Map<String,String>> mDeviceList;
     private Context context;
     private ClientMQTT clientMQTT;
+    private static View deviceView;
     public FindDeviceAdapter(List<Map<String,String>> deviceList){
         mDeviceList=deviceList;
     }
@@ -37,7 +38,6 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
         Button bt_approve;
         Button bt_reject;
         ImageView imageView;
-        View deviceView;
         public ViewHolder(View view){//通过转化为view的布局获得控件实例
             super(view);
             deviceView=view;
@@ -57,14 +57,14 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.device_list,parent,false);
         final ViewHolder holder=new ViewHolder(view);
 
-        clientMQTT=new ClientMQTT("light");
-        try {
-            clientMQTT.Mqtt_innit();
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
-        clientMQTT.startReconnect(parent.getContext());
-        return null;
+//        clientMQTT=new ClientMQTT("light");
+//        try {
+//            clientMQTT.Mqtt_innit();
+//        } catch (MqttException e) {
+//            e.printStackTrace();
+//        }
+//        clientMQTT.startReconnect(parent.getContext());
+        return holder;/////////////////////////
     }
 
     @Override
@@ -72,13 +72,12 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
         //直接
         String category=mDeviceList.get(position).get("source_command");//在解析完中控传过来的数据，数据早已存入数据库了，现在的工作只是Update就可以，保存是否组网，没组网就显示这个设备，传入的list、应该在外面先判断一下再传入未租网的list，
         String source_long_address=mDeviceList.get(position).get("source_long_address");
-        int source_command=Integer.valueOf(category);
-        switch (source_command){
-            case 1:holder.imageView.setImageResource(R.drawable.lights_smart);break;
-            case 2:holder.imageView.setImageResource(R.drawable.air_condition_smart);break;
-            case 3:holder.imageView.setImageResource(R.drawable.curtain_smart);break;
-            case 4:holder.imageView.setImageResource(R.drawable.lock_smart);break;
-            case 5:holder.imageView.setImageResource(R.drawable.set_voice);
+        switch (category){
+            case "0x01":holder.imageView.setImageResource(R.drawable.lights_smart);break;
+            case "0x02":holder.imageView.setImageResource(R.drawable.air_condition_smart);break;
+            case "0x03":holder.imageView.setImageResource(R.drawable.curtain_smart);break;
+            case "0x04":holder.imageView.setImageResource(R.drawable.lock_smart);break;
+            case "0x05":holder.imageView.setImageResource(R.drawable.set_voice);
 
         }
         holder.showCategory.setText(category);
@@ -105,6 +104,6 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mDeviceList.size();/////////
     }
 }

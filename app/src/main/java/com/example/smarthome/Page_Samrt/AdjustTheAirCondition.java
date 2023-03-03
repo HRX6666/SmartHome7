@@ -16,6 +16,7 @@ import com.example.smarthome.View.CustomizeGoodsAddView;
 public class AdjustTheAirCondition extends AppCompatActivity {
             Toolbar air_tb;
             private CustomizeGoodsAddView customizeGoodsAddView;
+            private static int temperature;
             private int maxNum=30;
             private int minNum=16;
 
@@ -33,13 +34,14 @@ public class AdjustTheAirCondition extends AppCompatActivity {
         inithome();
         initwindspeed();
         initmodle();
-        initadd();
+//        initadd();
     }
 
     private void initadd() {
         customizeGoodsAddView=findViewById(R.id.customizeGoodsAddView);
         customizeGoodsAddView.setMaxValue(maxNum);
         customizeGoodsAddView.setMinValue(minNum);
+        customizeGoodsAddView.setValue(temperature);//用来更新选择不同房间后下方温度的变化
         customizeGoodsAddView.setOnValueChangeListene(new CustomizeGoodsAddView.OnValueChangeListener() {
             @Override
             public void onValueChange(int value) {
@@ -84,7 +86,8 @@ public class AdjustTheAirCondition extends AppCompatActivity {
         sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parenAt, View view, int arg2, long id) {
-
+                temperature=16+arg2;
+                initadd();
             }
 
             @Override
@@ -105,6 +108,9 @@ public class AdjustTheAirCondition extends AppCompatActivity {
         sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parenAt, View view, int arg1, long id) {
+
+                //房间选完后在调用一次init方法，大概能刷新数据？god sees
+
             }
 
             @Override
