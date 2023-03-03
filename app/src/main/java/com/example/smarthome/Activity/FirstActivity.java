@@ -47,13 +47,13 @@ public class FirstActivity extends AppCompatActivity {
         sixth.setAnimation(topAnimation);
        app_name.setAnimation(middleAnimation);
        tagLine.setAnimation(bottomAnimation);
-        clientMQTT=new ClientMQTT("light");
-        try {
-            clientMQTT.Mqtt_innit();
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
-        clientMQTT.startReconnect(FirstActivity.this);
+//        clientMQTT=new ClientMQTT("light");
+//        try {
+//            clientMQTT.Mqtt_innit();
+//        } catch (MqttException e) {
+//            e.printStackTrace();
+//        }
+//        clientMQTT.startReconnect(FirstActivity.this);
 
        new Handler().postDelayed(new Runnable() {
            @Override

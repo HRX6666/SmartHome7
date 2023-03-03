@@ -33,7 +33,7 @@ public class AdjustTheLights extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adjust_the_lights);
         lights_tb=findViewById(R.id.lights_tb);
-        open_light=findViewById(R.id.trail_open);
+//        open_light=findViewById(R.id.trail_open);
         shut_light=findViewById(R.id.trail_shut);
         spinner_model=findViewById(R.id.lights_choose_model);
         spinner_home=findViewById(R.id.lights_choose_home);
@@ -71,14 +71,14 @@ public class AdjustTheLights extends AppCompatActivity {
 
             }
         });
-        open_light.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                clientMQTT.startReconnect(AdjustTheLights.this);
-                clientMQTT.publishMessagePlus("2023-02-19T08:30:00Z","1.2.3",null,"0x4AA5","0x01", "0x0101");
-                Toast.makeText(AdjustTheLights.this, "开灯!", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        open_light.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                clientMQTT.startReconnect(AdjustTheLights.this);
+//                clientMQTT.publishMessagePlus("2023-02-19T08:30:00Z","1.2.3",null,"0x4AA5","0x01", "0x0101");
+//                Toast.makeText(AdjustTheLights.this, "开灯!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         shut_light.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

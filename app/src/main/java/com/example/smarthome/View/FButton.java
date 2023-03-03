@@ -18,7 +18,7 @@ import android.widget.Button;
 
 import com.example.smarthome.R;
 
-import info.hoang8f.fbutton.R;
+//import info.hoang8f.fbutton.R;
 public class FButton extends androidx.appcompat.widget.AppCompatButton implements View.OnTouchListener {
 
     //Custom values
@@ -96,33 +96,33 @@ public class FButton extends androidx.appcompat.widget.AppCompatButton implement
         isShadowEnabled = true;
         Resources resources = getResources();
         if (resources == null) return;
-        mButtonColor = resources.getColor(R.color.fbutton_default_color);
-        mShadowColor = resources.getColor(R.color.fbutton_default_shadow_color);
-        mShadowHeight = resources.getDimensionPixelSize(R.dimen.fbutton_default_shadow_height);
-        mCornerRadius = resources.getDimensionPixelSize(R.dimen.fbutton_default_conner_radius);
+//        mButtonColor = resources.getColor(R.color.fbutton_default_color);
+//        mShadowColor = resources.getColor(R.color.fbutton_default_shadow_color);
+//        mShadowHeight = resources.getDimensionPixelSize(R.dimen.fbutton_default_shadow_height);
+//        mCornerRadius = resources.getDimensionPixelSize(R.dimen.fbutton_default_conner_radius);
     }
 
     @SuppressLint("ResourceAsColor")
     private void parseAttrs(Context context, AttributeSet attrs) {
         //Load from custom attributes
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FButton);
-        if (typedArray == null) return;
-        for (int i = 0; i < typedArray.getIndexCount(); i++) {
-            int attr = typedArray.getIndex(i);
-            if (attr == R.styleable.FButton_shadowEnabled) {
-                isShadowEnabled = typedArray.getBoolean(attr, true); //Default is true
-            } else if (attr == R.styleable.FButton_buttonColor) {
-                mButtonColor = typedArray.getColor(attr, R.color.fbutton_default_color);
-            } else if (attr == R.styleable.FButton_shadowColor) {
-                mShadowColor = typedArray.getColor(attr, R.color.fbutton_default_shadow_color);
-                isShadowColorDefined = true;
-            } else if (attr == R.styleable.FButton_shadowHeight) {
-                mShadowHeight = typedArray.getDimensionPixelSize(attr, R.dimen.fbutton_default_shadow_height);
-            } else if (attr == R.styleable.FButton_cornerRadius) {
-                mCornerRadius = typedArray.getDimensionPixelSize(attr, R.dimen.fbutton_default_conner_radius);
-            }
-        }
-        typedArray.recycle();
+//        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FButton);
+//        if (typedArray == null) return;
+////        for (int i = 0; i < typedArray.getIndexCount(); i++) {
+////            int attr = typedArray.getIndex(i);
+////            if (attr == R.styleable.FButton_shadowEnabled) {
+////                isShadowEnabled = typedArray.getBoolean(attr, true); //Default is true
+////            } else if (attr == R.styleable.FButton_buttonColor) {
+////                mButtonColor = typedArray.getColor(attr, R.color.fbutton_default_color);
+////            } else if (attr == R.styleable.FButton_shadowColor) {
+////                mShadowColor = typedArray.getColor(attr, R.color.fbutton_default_shadow_color);
+////                isShadowColorDefined = true;
+////            } else if (attr == R.styleable.FButton_shadowHeight) {
+////                mShadowHeight = typedArray.getDimensionPixelSize(attr, R.dimen.fbutton_default_shadow_height);
+////            } else if (attr == R.styleable.FButton_cornerRadius) {
+////                mCornerRadius = typedArray.getDimensionPixelSize(attr, R.dimen.fbutton_default_conner_radius);
+////            }
+////        }
+//        typedArray.recycle();
 
         //Get paddingLeft, paddingRight
         int[] attrsArray = new int[]{

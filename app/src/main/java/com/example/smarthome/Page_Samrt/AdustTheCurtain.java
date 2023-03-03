@@ -41,9 +41,9 @@ public class AdustTheCurtain extends AppCompatActivity {
         curtain_tb = findViewById(R.id.curtain_tb);
         bt_openAll = findViewById(R.id.open_all);
         bt_openMid = findViewById(R.id.open_mid);
-        spinner_choose_home = findViewById(R.id.curtain_choose_home);
+//        spinner_choose_home = findViewById(R.id.curtain_choose_home);//这个因为要重新设计，毕竟房间可以自由添加，不能固定在spinner那几个
         bt_closeCurtain = findViewById(R.id.close_curtain);
-        initDropdown1();
+//        initDropdown1();
         clientMQTT = new ClientMQTT("light");
         try {
             clientMQTT.Mqtt_innit();
@@ -115,30 +115,30 @@ public class AdustTheCurtain extends AppCompatActivity {
             }
         });
     }
-        private void initDropdown1() {
-            ArrayAdapter starAdapter1= ArrayAdapter.createFromResource(getApplicationContext(), R.array.choose_home, android.R.layout.simple_spinner_item);
-            Spinner sp_dropdown=findViewById(R.id.curtain_choose_home);
-            starAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            sp_dropdown.setAdapter(starAdapter1);
-//        sp_dropdown.setSelection(0);
-            sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int arg1, long id) {
-//                Toast.makeText(AdustTheCurtain.this, String.valueOf(arg1), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(AdustTheCurtain.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-                    home_choose=arg1;//转换为16进制加一个0x0
-                    s_home_choose="0x0"+home_choose;
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
-
-        }
+//        private void initDropdown1() {
+//            ArrayAdapter starAdapter1= ArrayAdapter.createFromResource(getApplicationContext(), R.array.choose_home, android.R.layout.simple_spinner_item);
+//            Spinner sp_dropdown=findViewById(R.id.curtain_choose_home);
+//            starAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//            sp_dropdown.setAdapter(starAdapter1);
+////        sp_dropdown.setSelection(0);
+//            sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                @Override
+//                public void onItemSelected(AdapterView<?> parent, View view, int arg1, long id) {
+////                Toast.makeText(AdustTheCurtain.this, String.valueOf(arg1), Toast.LENGTH_SHORT).show();
+////                Toast.makeText(AdustTheCurtain.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+//                    home_choose=arg1;//转换为16进制加一个0x0
+//                    s_home_choose="0x0"+home_choose;
+//                }
+//
+//                @Override
+//                public void onNothingSelected(AdapterView<?> parent) {
+//
+//                }
+//            });
+//
+//
+//        }
     }
 
 
