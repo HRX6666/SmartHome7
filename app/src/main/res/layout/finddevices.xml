@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     >
 
     <Button
@@ -43,13 +42,20 @@
         android:checked="false"
         app:layout_constraintLeft_toRightOf="@+id/text1"
         app:layout_constraintTop_toBottomOf="@+id/FenGe" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recy_devices"
-        android:layout_width="377dp"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
         android:layout_height="538dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recy_devices"
+            android:layout_width="377dp"
+            android:layout_height="538dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+             />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

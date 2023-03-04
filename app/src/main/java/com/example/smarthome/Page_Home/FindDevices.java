@@ -1,5 +1,6 @@
 package com.example.smarthome.Page_Home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -9,6 +10,7 @@ import android.widget.Switch;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.smarthome.Adapter.FindDeviceAdapter;
 import com.example.smarthome.Database.Device;
@@ -24,16 +26,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class FindDevices extends AppCompatActivity {
     private List<Map<String,String>> deviceList=new ArrayList<Map<String,String>>();
+    private  List<Device> devicelist=new ArrayList<>();
     private Switch aSwitch;
     private ClientMQTT clientMQTT;
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.finddevices);
+        swipeRefreshLayout=findViewById(R.id.swipeRefresh);
         aSwitch=findViewById(R.id.switch1);
+
         clientMQTT=new ClientMQTT("light");
         try {
             clientMQTT.Mqtt_innit();
@@ -41,27 +49,71 @@ public class FindDevices extends AppCompatActivity {
             e.printStackTrace();
         }
         clientMQTT.startReconnect(FindDevices.this);
-//        clientMQTT.Subscribe();
+        //设置进度View样式的大小，只有两个值DEFAULT和LARGE
+//设置进度View下拉的起始点和结束点，scale 是指设置是否需要放大或者缩小动画
+        swipeRefreshLayout.setProgressViewOffset(true, -0, 100);
+//设置进度View下拉的结束点，scale 是指设置是否需要放大或者缩小动画
+        swipeRefreshLayout.setProgressViewEndTarget(true, 180);
+//设置进度View的组合颜色，在手指上下滑时使用第一个颜色，在刷新中，会一个个颜色进行切换
+        swipeRefreshLayout.setColorSchemeColors(Color.BLACK, Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE);
+
+//设置触发刷新的距离
+        swipeRefreshLayout.setDistanceToTriggerSync(200);
+//如果child是自己自定义的view，可以通过这个回调，告诉mSwipeRefreshLayoutchild是否可以滑动
+        swipeRefreshLayout.setOnChildScrollUpCallback(null);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                deviceList.clear();
+                                devicelist= LitePal.order("source_command desc").where("flag = ? and isUpdate = ?","0","1").find(Device.class);
+                                initContent();
+                                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recy_devices);
+                                LinearLayoutManager linearLayout = new LinearLayoutManager(FindDevices.this);
+                                recyclerView.setLayoutManager(linearLayout);
+                                FindDeviceAdapter findDeviceAdapter = new FindDeviceAdapter(deviceList);
+                                recyclerView.setAdapter(findDeviceAdapter);
+                                findDeviceAdapter.notifyDataSetChanged();
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
-                    //之后在数据库加一个是否是点击入网后能够获得的电器isGet,解析那里的litepal要记得让isGet为1，这里switch变成false后再全弄为0
+                    //之后在数据库加一个是否是点击入网后能够获得的电器isupdate,解析那里的litepal要记得让isupdate为1，这里switch变成false后再全弄为0
+                    clientMQTT.Subscribe();//没有显示不要担心，做一个下拉刷新就好了
+                    clientMQTT.publishMessagePlus("2023-02-19T08:30:00Z","1.2.3",null,"0x0000","0xFF", "0x0002");
                     deviceList.clear();
                     initContent();
-                    RecyclerView recyclerView=(RecyclerView) findViewById(R.id.recy_devices);
-                    LinearLayoutManager linearLayout=new LinearLayoutManager(FindDevices.this);
+                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recy_devices);
+                    LinearLayoutManager linearLayout = new LinearLayoutManager(FindDevices.this);
                     recyclerView.setLayoutManager(linearLayout);
-                    FindDeviceAdapter findDeviceAdapter=new FindDeviceAdapter(deviceList);
+                    FindDeviceAdapter findDeviceAdapter = new FindDeviceAdapter(deviceList);
                     recyclerView.setAdapter(findDeviceAdapter);
                     findDeviceAdapter.notifyDataSetChanged();
                 }else {
-                    //还要弄一个什么都不显示的,建议传入空的List试试
                     //setIsUpdate全部都set成0
                     clientMQTT.unSubscribe();//取消订阅
+
                     Device device=new Device();
-                    device.setIsUpdate(0);
-                    device.updateAll("isUpdate = ?","1");
+                    device.setToDefault("isUpdate");
+                    device.updateAll();
 
                 }
             }
@@ -70,48 +122,40 @@ public class FindDevices extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-//        deviceList.clear();
-//        initContent();
-//        RecyclerView recyclerView=(RecyclerView) findViewById(R.id.recy_devices);
-//        LinearLayoutManager linearLayout=new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(linearLayout);
-//        FindDeviceAdapter findDeviceAdapter=new FindDeviceAdapter(deviceList);
-//        recyclerView.setAdapter(findDeviceAdapter);
-//        findDeviceAdapter.notifyDataSetChanged();
 
     }
     private void initContent()
     {
-        List<Device> devicelist= LitePal.order("source_command desc").where("flag = ?","0").find(Device.class);
-        for(Device devices:devicelist){
-            String source_long_address=devices.getSource_long_address();
-            int flag=devices.getFlag();
-            String source_command=devices.getSource_command();
-            Map<String,String> map=new HashMap<>();
-            map.put("source_command",source_command);
-            map.put("source_long_address",String.valueOf(source_long_address));
-            map.put("flag",String.valueOf(flag));
+
+
+        for(Device devices:devicelist) {
+            String source_long_address = devices.getSource_long_address();
+            int flag = devices.getFlag();
+            String source_command = devices.getSource_command();
+            Map<String, String> map = new HashMap<>();
+            map.put("source_command", source_command);
+            map.put("source_long_address", String.valueOf(source_long_address));
+            map.put("flag", String.valueOf(flag));
             deviceList.add(map);
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
+//    class MyRunnable implements Runnable{
+//        @Override
+//        public void run() {
+//            devicelist= LitePal.order("source_command desc").where("flag = ? and isUpdate = ?","0","1").find(Device.class);
+//            while (devicelist.isEmpty()) {
+//                devicelist= LitePal.order("source_command desc").where("flag = ? and isUpdate = ?","0","1").find(Device.class);
+//            }
+//            deviceList.clear();
+//            initContent();
+//            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recy_devices);
+//            LinearLayoutManager linearLayout = new LinearLayoutManager(FindDevices.this);
+//            recyclerView.setLayoutManager(linearLayout);
+//            FindDeviceAdapter findDeviceAdapter = new FindDeviceAdapter(deviceList);
+//            recyclerView.setAdapter(findDeviceAdapter);
+//            findDeviceAdapter.notifyDataSetChanged();
+//        }
+//    }
 
 }

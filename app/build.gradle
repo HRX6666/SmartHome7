@@ -31,8 +31,11 @@ android {
     }
 }
 
+
 dependencies {
 
+    implementation 'info.hoang8f:fbutton:1.0.5'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'org.litepal.guolindev:core:3.2.3'
     implementation'androidx.biometric:biometric:1.1.0'
     implementation 'com.alibaba:fastjson:2.0.23'

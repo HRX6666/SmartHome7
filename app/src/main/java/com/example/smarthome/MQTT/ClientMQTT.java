@@ -159,11 +159,11 @@ public class ClientMQTT {
                         break;
                     case 31:   //连接成功
                         Toast.makeText(context,"连接成功" ,Toast.LENGTH_SHORT).show();
-                        try {
-                            client.subscribe("ESP32toAPP",0);
-                        } catch (MqttException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            client.subscribe("ESP32toAPP",0);
+//                        } catch (MqttException e) {
+//                            e.printStackTrace();
+//                        }
                         break;
                     default:
                         break;
