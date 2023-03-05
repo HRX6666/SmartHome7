@@ -42,8 +42,8 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
             super(view);
             deviceView=view;
             showCategory=view.findViewById(R.id.device_category_display);
-            bt_reject=view.findViewById(R.id.reject);
-            bt_approve=view.findViewById(R.id.approve);
+            bt_reject=view.findViewById(R.id.device_reject);
+            bt_approve=view.findViewById(R.id.device_approve);
             imageView=view.findViewById(R.id.device_image1);
 
 
@@ -73,11 +73,11 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
         String category=mDeviceList.get(holder.getAdapterPosition()).get("source_command");//在解析完中控传过来的数据，数据早已存入数据库了，现在的工作只是Update就可以，保存是否组网，没组网就显示这个设备，传入的list、应该在外面先判断一下再传入未租网的list，
         String source_long_address=mDeviceList.get(holder.getAdapterPosition()).get("source_long_address");
         switch (category){
-            case "0x01":holder.imageView.setImageResource(R.drawable.lights_smart);break;
+            case "0x01":holder.imageView.setImageResource(R.drawable.open_lights);break;
             case "0x02":holder.imageView.setImageResource(R.drawable.air_condition_smart);break;
             case "0x03":holder.imageView.setImageResource(R.drawable.curtain_smart);break;
-            case "0x04":holder.imageView.setImageResource(R.drawable.lock_smart);break;
-            case "0x05":holder.imageView.setImageResource(R.drawable.set_voice);
+            case "0x04":holder.imageView.setImageResource(R.drawable.little_mentor);break;
+            case "0x05":holder.imageView.setImageResource(R.drawable.music);
 
         }
         holder.showCategory.setText(category);

@@ -73,7 +73,7 @@ public void parseJsonAndUpdateDatabase(String jsonData){
     for (int i = 0; i < size; i++) {
 
         JSONObject jsonObject1=jsonArray.getJSONObject(i);
-        List<Device> devices=LitePal.where("source_long_address = ? and flag = ?",jsonObject1.getString("source_long_address"),"0").find(Device.class);
+        List<Device> devices=LitePal.where("source_long_address = ?",jsonObject1.getString("source_long_address")).find(Device.class);
            if(devices.isEmpty()){
                Device device=new Device();
                device.setSource_long_address(jsonObject1.getString("source_long_address"));
@@ -81,15 +81,15 @@ public void parseJsonAndUpdateDatabase(String jsonData){
                device.setNetwork_flag(jsonObject1.getString("network_flag"));
                device.setSource_command(jsonObject1.getString("source_command"));
                String source_data=jsonObject1.getString("source_data");
-               device.setSource_data(jsonObject1.getString("source_data"));
+               device.setSource_data(source_data);
                device.setIsUpdate(1);
                device.setMisc(jsonObject1.getString("misc"));
                device.setFlag(0);
                device.save();
            }else{
                Device device=new Device();
-               device.setFlag(1);
-               device.setIsUpdate(1);
+               device.setIsUpdate(1);//关闭开放入网获得直接返回，还要加一个系统返回键的监听，要记得update为0防止下次没这个反而显示
+               device.setSource_short_address(jsonObject1.getString("source_short_address"));
                device.updateAll("source_long_address = ?",jsonObject1.getString("source_long_address"));
            }
 }}

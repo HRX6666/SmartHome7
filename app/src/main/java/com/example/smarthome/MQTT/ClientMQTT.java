@@ -43,7 +43,7 @@ public class ClientMQTT {
     private static final String password = "ESP32-C3-password";
     private String device_name="vivo";
     public  static final String serverURI="tcp://broker.emqx.io:1883";
-//    public  static final String serverURI="tcp://192.168.203.217:1883";
+//   public  static final String serverURI="tcp://192.168.203.217:1883";
         private String device_id=MqttClient.generateClientId();
 
     private String topicName;
