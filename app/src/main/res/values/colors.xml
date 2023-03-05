@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_200">#DBC2FB</color>
+    <color name="purple_100">#F0E9F9</color>
+    <color name="purple_150">#E8DAF9</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
@@ -16,4 +18,8 @@
     <color name="blue2">#7EEAD7</color>
     <color name="white1">#F2EFE3</color>
     <color name="card1">#D0BBF5</color>
+    <color name="fbutton_default_color">#EFE37B</color>
+    <color name="fbutton_default_shadow_color">#EFE37B</color>
+    <color name="outColor">#8a8a8a</color>
+    <color name="inColor">#660D92DD</color>
 </resources>

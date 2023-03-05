@@ -97,7 +97,8 @@ public class FindDevices extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
                     //之后在数据库加一个是否是点击入网后能够获得的电器isupdate,解析那里的litepal要记得让isupdate为1，这里switch变成false后再全弄为0
-                    clientMQTT.Subscribe();//没有显示不要担心，做一个下拉刷新就好了
+//                    clientMQTT.Subscribe();//没有显示不要担心，做一个下拉刷新就好了
+
                     clientMQTT.publishMessagePlus("2023-02-19T08:30:00Z","1.2.3",null,"0x0000","0xFF", "0x0002");
                     deviceList.clear();
                     initContent();

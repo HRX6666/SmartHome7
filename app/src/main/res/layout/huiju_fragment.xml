@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<com.example.smarthome.View.pullextend.PullExtendLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:id="@+id/pull_extend"
+    android:background="@color/purple_100">
+    <com.example.smarthome.View.pullextend.ExtendListHeader
+        android:id="@+id/extend_header"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:background="@color/purple_100"/>
     <LinearLayout
+        android:id="@+id/huiju_ll"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/smart_bg"
         android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingTop="10dp">
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:titleTextColor="@color/white"
-        app:title="@string/app_name"
-        app:menu="@menu/smarthome_menu"
-        android:layout_gravity="end"
-        android:layout_margin="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="欢迎回家\n主人"
-        android:textSize="35dp"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-black"
-        android:letterSpacing="0.03"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"/>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/huiju_tb"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:titleTextColor="@color/white"
+            app:title="@string/app_name"
+            app:menu="@menu/smarthome_menu"
+            android:layout_gravity="end"
+            android:layout_margin="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="欢迎回家\n主人"
+            android:textSize="35dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.03"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,127 +89,22 @@
         </LinearLayout>
 
         <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.cardview.widget.CardView
-            android:id="@+id/c_drawing"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            app:cardBackgroundColor="#EC856EDD"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp">
-
-            <RelativeLayout
-                android:id="@+id/rv_drawing"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="25dp">
-
-                <ImageView
-                    android:id="@+id/iv_drawing"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/drawing_room" />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="43dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_toRightOf="@+id/iv_drawing"
-                    android:text="客厅"
-                    android:textColor="@color/white1"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-
-    </RelativeLayout>
-        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/c_toilet"
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/add_view"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                app:cardBackgroundColor="#EC856EDD"
-                app:cardCornerRadius="25dp"
-                app:cardElevation="5dp"
+                android:layout_height="280dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp">
-
-                <RelativeLayout
-                    android:id="@+id/rv_toilet"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="25dp">
-                    <ImageView
-                        android:id="@+id/iv_toilet"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/toilet"/>
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="43dp"
-                        android:layout_toRightOf="@+id/iv_toilet"
-                        android:text="卫生间"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="30dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white1"/>
-
-
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/rv_bedroom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/c_bedroom"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                app:cardBackgroundColor="#EC856EDD"
-                app:cardCornerRadius="25dp"
-                app:cardElevation="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="25dp">
-                    <ImageView
-                        android:id="@+id/iv_bedroom"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/bedroom"/>
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="43dp"
-                        android:layout_toRightOf="@+id/iv_bedroom"
-                        android:text="卧室"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="30dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white1"/>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                android:background="@color/purple_150"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="horizontal" />
         </RelativeLayout>
 
     </LinearLayout>
 
-</ScrollView>
+
+
+
+</com.example.smarthome.View.pullextend.PullExtendLayout>

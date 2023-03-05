@@ -57,21 +57,21 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.device_list,parent,false);
         final ViewHolder holder=new ViewHolder(view);
 
-//        clientMQTT=new ClientMQTT("light");
-//        try {
-//            clientMQTT.Mqtt_innit();
-//        } catch (MqttException e) {
-//            e.printStackTrace();
-//        }
-//        clientMQTT.startReconnect(parent.getContext());
+        clientMQTT=new ClientMQTT("light");
+        try {
+            clientMQTT.Mqtt_innit();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+        clientMQTT.startReconnect(parent.getContext());
         return holder;/////////////////////////
     }
 
     @Override
     public void onBindViewHolder(@NonNull FindDeviceAdapter.ViewHolder holder, int position) {
         //直接
-        String category=mDeviceList.get(position).get("source_command");//在解析完中控传过来的数据，数据早已存入数据库了，现在的工作只是Update就可以，保存是否组网，没组网就显示这个设备，传入的list、应该在外面先判断一下再传入未租网的list，
-        String source_long_address=mDeviceList.get(position).get("source_long_address");
+        String category=mDeviceList.get(holder.getAdapterPosition()).get("source_command");//在解析完中控传过来的数据，数据早已存入数据库了，现在的工作只是Update就可以，保存是否组网，没组网就显示这个设备，传入的list、应该在外面先判断一下再传入未租网的list，
+        String source_long_address=mDeviceList.get(holder.getAdapterPosition()).get("source_long_address");
         switch (category){
             case "0x01":holder.imageView.setImageResource(R.drawable.lights_smart);break;
             case "0x02":holder.imageView.setImageResource(R.drawable.air_condition_smart);break;
@@ -90,7 +90,9 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
                 device.setFlag(1);
                 device.updateAll("source_long_address = ?",source_long_address);
                 //向中控发送APP同意入网信息
-//                clientMQTT.publishMessagePlus();
+                String source_short_address=mDeviceList.get(holder.getAdapterPosition()).get("source_short_address");
+                clientMQTT.publishMessagePlus("2023-02-19T08:30:00Z","1.2.3",null,source_short_address,"0xFF", "0x0001");
+
 
             }
         });
@@ -98,6 +100,8 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
             @Override
             public void onClick(View view) {
                 //发送拒绝指令
+                clientMQTT.publishMessagePlus("2023-02-19T08:30:00Z","1.2.3",null,"0x0000","0xFF", "0x0000");
+
             }
         });
     }

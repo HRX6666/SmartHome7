@@ -10,8 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 
+import com.example.smarthome.Database.Device;
 import com.example.smarthome.R;
 import com.example.smarthome.View.CustomizeGoodsAddView;
+
+import org.litepal.LitePal;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AdjustTheAirCondition extends AppCompatActivity {
             Toolbar air_tb;
@@ -86,7 +93,16 @@ public class AdjustTheAirCondition extends AppCompatActivity {
         sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parenAt, View view, int arg2, long id) {
-                temperature=16+arg2;
+               List<Device> deviceList= LitePal.where("source_command= ?","0x02").find(Device.class);
+                for(Device devices:deviceList) {
+                    String source_long_address = devices.getSource_long_address();
+//                    temperature = devices.getAir_temp();
+                    String tem=devices.getSource_data();
+                    String ee=tem.substring(2,3);
+                    temperature=Integer.parseInt(tem.substring(2,4));
+//温度不显示，只是用来判断工作状态  temp1>temp2-->制热 temp1(空调吹气口的温度，temp2空调下部的温度)
+                //Litepal好像没存
+                }
                 initadd();
             }
 

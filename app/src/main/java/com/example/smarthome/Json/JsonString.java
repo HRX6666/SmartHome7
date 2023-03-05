@@ -11,7 +11,7 @@ public class JsonString {
     private String target_short_address;
     private String target_command;
     private String target_data;
-
+    private String allow_access;
 
     public JsonString(String timestamp, String firmware_version, String device_name, String device_id, String misc, String target_short_address, String target_command, String target_data) {
         this.timestamp = timestamp;
@@ -32,15 +32,14 @@ public class JsonString {
                 "\"device_name\":\" "+device_name+"\"," +
                 "\"device_id\":\" "+device_id+"\"," +
                 "\"other_data\": {" +
-                "\"misc\":\""+misc+
-                "\"}," +
+                "\"misc\":\""+misc+"\"}," +
                 "\"peripherals\": [" +
                 "{" +
                 "\"target_short_address\":\""+target_short_address+" \"," +
                 "\"target_command\": \""+target_command+"\"," +
                 "\"timestamp\": \""+timestamp+"\"," +
                 "\"target_data\":\" "+target_data+"\"," +
-                "\"misc\": \""+misc + "\"}" + "]" +
+                "\"misc\":{\"allow_access\":\""+target_data + "\"}}" + "]" +
                 "}";
     }
 }

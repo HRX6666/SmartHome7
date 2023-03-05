@@ -14,14 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Adapter.AddSmartAdapter;
-import com.example.smarthome.Adapter.AddSmartHelper;
-import com.example.smarthome.Page_Samrt.AdjustTheAirCondition;
-import com.example.smarthome.Page_Samrt.AdjustTheLights;
-import com.example.smarthome.Page_Samrt.AdustTheCurtain;
-import com.example.smarthome.Page_Samrt.GoHome;
-import com.example.smarthome.Page_Samrt.GoOff;
-import com.example.smarthome.Page_Samrt.Monitoring;
-import com.example.smarthome.Page_Samrt.Night;
+import com.example.smarthome.Helper.AddSmartHelper;
 import com.example.smarthome.R;
 
 import java.util.ArrayList;

@@ -43,8 +43,9 @@ public class ClientMQTT {
     private static final String password = "ESP32-C3-password";
     private String device_name="vivo";
     public  static final String serverURI="tcp://broker.emqx.io:1883";
-    //    private String device_id=MqttClient.generateClientId();
-    private String device_id="voyager1";
+//    public  static final String serverURI="tcp://192.168.203.217:1883";
+        private String device_id=MqttClient.generateClientId();
+
     private String topicName;
     private final MemoryPersistence memoryPersistence=new MemoryPersistence();
     public ClientMQTT( String topicName) {
@@ -159,11 +160,11 @@ public class ClientMQTT {
                         break;
                     case 31:   //连接成功
                         Toast.makeText(context,"连接成功" ,Toast.LENGTH_SHORT).show();
-//                        try {
-//                            client.subscribe("ESP32toAPP",0);
-//                        } catch (MqttException e) {
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            client.subscribe("ESP32toAPP",0);
+                        } catch (MqttException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     default:
                         break;

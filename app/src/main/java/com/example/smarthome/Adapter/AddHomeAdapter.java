@@ -9,33 +9,33 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smarthome.Helper.AddSmartHelper;
+import com.example.smarthome.Helper.ExtendHeatHelper;
 import com.example.smarthome.R;
 
 import java.util.ArrayList;
 
-public class AddSmartAdapter extends RecyclerView.Adapter <AddSmartAdapter.AddSmartHolder> {
-    ArrayList<AddSmartHelper> addSmartHelpers;
+public class AddHomeAdapter extends RecyclerView.Adapter<AddHomeAdapter.AddHomeHolder> {
+    ArrayList<ExtendHeatHelper> addHomeHelpers;
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
 
-    public AddSmartAdapter(ArrayList<AddSmartHelper> addSmartHelpers) {
-        this.addSmartHelpers = addSmartHelpers;
+    public AddHomeAdapter(ArrayList<ExtendHeatHelper> addHomeHelpers) {
+        this.addHomeHelpers = addHomeHelpers;
     }
 
     @NonNull
     @Override
-    public AddSmartHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_smart, parent, false);
-        AddSmartHolder addSmartHolder = new AddSmartHolder(view);
-        return addSmartHolder;
+    public AddHomeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_view, parent, false);
+        AddHomeHolder addHomeHolder = new AddHomeHolder(view);
+        return addHomeHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AddSmartHolder holder, int position) {
-        AddSmartHelper addSmartHelper = addSmartHelpers.get(position);
-        holder.imageView.setImageResource(addSmartHelper.getImage());
-        holder.title.setText(addSmartHelper.getTitle());
+    public void onBindViewHolder(@NonNull AddHomeHolder holder, int position) {
+        ExtendHeatHelper extendHeatHelper = addHomeHelpers.get(position);
+        holder.imageView.setImageResource(extendHeatHelper.getImage());
+        holder.title.setText(extendHeatHelper.getTitle());
         if(onItemClickListener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -58,13 +58,18 @@ public class AddSmartAdapter extends RecyclerView.Adapter <AddSmartAdapter.AddSm
 
     }
 
-    public static class AddSmartHolder extends RecyclerView.ViewHolder {
+    @Override
+    public int getItemCount() {
+        return addHomeHelpers.size();
+    }
+
+    public static class AddHomeHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView title;
-        public AddSmartHolder(@NonNull View itemView) {
+        public AddHomeHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.add_im);
-            title = itemView.findViewById(R.id.add_tv);
+            imageView = itemView.findViewById(R.id.iv_add);
+            title = itemView.findViewById(R.id.tv_add);
         }
 
     }
@@ -80,8 +85,5 @@ public class AddSmartAdapter extends RecyclerView.Adapter <AddSmartAdapter.AddSm
     public interface OnItemClickListener{
         void OnItemClickListener(View view,int position);
     }
-    @Override
-    public int getItemCount() {
-        return addSmartHelpers.size();
-    }
+
 }

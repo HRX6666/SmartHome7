@@ -16,7 +16,9 @@ public class Device extends LitePalSupport {
     private int light_temp;//色温
 
     private int air_HotOrCold;//制热还是制冷
-    private int air_temp;//空调温度
+    private String air_temp;//空调温度
+
+//   private int air_temp;//空调温度
 
     private int curtain_extent;//窗帘程度
     //表关联
@@ -88,13 +90,20 @@ public class Device extends LitePalSupport {
         this.air_HotOrCold = air_HotOrCold;
     }
 
-    public int getAir_temp() {
+    public String getAir_temp() {
         return air_temp;
     }
 
-    public void setAir_temp(int air_temp) {
+    public void setAir_temp(String air_temp) {
         this.air_temp = air_temp;
     }
+//    public int getAir_temp() {
+//        return air_temp;
+//    }
+//
+//    public void setAir_temp(int air_temp) {
+//        this.air_temp = air_temp;
+//    }
 
     public int getCurtain_extent() {
         return curtain_extent;

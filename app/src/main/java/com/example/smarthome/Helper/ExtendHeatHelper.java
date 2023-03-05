@@ -1,10 +1,10 @@
-package com.example.smarthome.Adapter;
+package com.example.smarthome.Helper;
 
-public class AddSmartHelper {
+public class ExtendHeatHelper {
     int image;
     String title,description;
 
-    public AddSmartHelper(int image, String title) {
+    public ExtendHeatHelper(int image, String title) {
         this.image = image;
         this.title = title;
     }

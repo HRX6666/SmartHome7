@@ -29,7 +29,7 @@ public class AdustTheCurtain extends AppCompatActivity {
     private Spinner spinner_choose_home;
     private Spinner spinner_choose_model;
     private Button bt_openAll;
-    private Button bt_openMid;
+//    private Button bt_openMid;
     private Button bt_closeCurtain;
     private int home_choose;
     private String s_home_choose;
@@ -40,7 +40,7 @@ public class AdustTheCurtain extends AppCompatActivity {
         setContentView(R.layout.activity_adust_the_curtain);
         curtain_tb = findViewById(R.id.curtain_tb);
         bt_openAll = findViewById(R.id.open_all);
-        bt_openMid = findViewById(R.id.open_mid);
+//        bt_openMid = findViewById(R.id.open_mid);
 //        spinner_choose_home = findViewById(R.id.curtain_choose_home);//这个因为要重新设计，毕竟房间可以自由添加，不能固定在spinner那几个
         bt_closeCurtain = findViewById(R.id.close_curtain);
 //        initDropdown1();
@@ -86,13 +86,7 @@ public class AdustTheCurtain extends AppCompatActivity {
                 clientMQTT.publishMessagePlus("2023-02-19T08:30:00Z","1.2.3",null,"0x4AA5","0x03", "0x0101");
             }
         });
-        bt_openMid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-            }
-        });
         bt_closeCurtain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

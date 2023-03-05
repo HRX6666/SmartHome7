@@ -80,10 +80,17 @@ public void parseJsonAndUpdateDatabase(String jsonData){
                device.setSource_short_address(jsonObject1.getString("source_short_address"));
                device.setNetwork_flag(jsonObject1.getString("network_flag"));
                device.setSource_command(jsonObject1.getString("source_command"));
+               String source_data=jsonObject1.getString("source_data");
+               device.setSource_data(jsonObject1.getString("source_data"));
                device.setIsUpdate(1);
                device.setMisc(jsonObject1.getString("misc"));
                device.setFlag(0);
                device.save();
+           }else{
+               Device device=new Device();
+               device.setFlag(1);
+               device.setIsUpdate(1);
+               device.updateAll("source_long_address = ?",jsonObject1.getString("source_long_address"));
            }
 }}
     public void parseJsonAndUpdateDatabase(String jsonData, List<Map<String,String>> devicesList){
