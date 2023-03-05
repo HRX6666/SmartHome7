@@ -77,7 +77,7 @@ public class FindDevices extends AppCompatActivity {
                             @Override
                             public void run() {
                                 deviceList.clear();
-                                devicelist= LitePal.order("source_command desc").where("flag = ? and isUpdate = ?","0","1").find(Device.class);
+                                devicelist= LitePal.order("source_command desc").where("flag= ? and isUpdate= ?","0","1").find(Device.class);
                                 initContent();
                                 RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recy_devices);
                                 LinearLayoutManager linearLayout = new LinearLayoutManager(FindDevices.this);
