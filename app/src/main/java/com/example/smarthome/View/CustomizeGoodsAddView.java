@@ -152,8 +152,8 @@ public class CustomizeGoodsAddView extends LinearLayout implements View.OnClickL
         } else {
             int count = Integer.parseInt(text);
             if (count == 0) {
-                Toast.makeText(mContext, "您输入的数量超过最大限制,请重新输入", Toast.LENGTH_SHORT).show();
-                onValueChangeListene.onValueChange(0);
+//                Toast.makeText(mContext, "您输入的数量超过最大限制,请重新输入", Toast.LENGTH_SHORT).show();
+//                onValueChangeListene.onValueChange(0);
             } else if (count > maxValue) {
                 mCountET.setText(maxValue + "");
                 showMaxNumber(mContext, "最大只能输入", maxValue);

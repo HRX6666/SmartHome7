@@ -19,7 +19,7 @@ public class ExtendListHeader extends ExtendLayout {
 
 
     float containerHeight = UIHelper.dip2px(60);
-    float listHeight = UIHelper.dip2px(120);
+    float listHeight = UIHelper.dip2px(600);
     boolean arrivedListHeight = false;
     private RecyclerView mRecyclerView;
 

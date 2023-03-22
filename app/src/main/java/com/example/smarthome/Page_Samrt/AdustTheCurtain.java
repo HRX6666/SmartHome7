@@ -2,6 +2,8 @@ package com.example.smarthome.Page_Samrt;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,9 +30,9 @@ public class AdustTheCurtain extends AppCompatActivity {
     private ClientMQTT clientMQTT;
     private Spinner spinner_choose_home;
     private Spinner spinner_choose_model;
-    private Button bt_openAll;
+    private CardView bt_openAll;
 //    private Button bt_openMid;
-    private Button bt_closeCurtain;
+    private CardView bt_closeCurtain;
     private int home_choose;
     private String s_home_choose;
     //下拉框进入默认是全屋，进入界面时应该根服务器同步数据，设置当前设备状态是怎么样的，那个seekbar也一样，要根据实际情况来变

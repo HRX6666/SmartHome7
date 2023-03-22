@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Page_Samrt.AdjustTheLights"
     android:orientation="vertical"
-    android:background="@color/yellow1">
+    android:background="#F6FFEC">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/voice_tb"
         android:layout_width="match_parent"
@@ -15,28 +15,39 @@
         app:title="门锁装置"
         app:titleTextColor="@color/lighthui">
     </androidx.appcompat.widget.Toolbar>
-    <SurfaceView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/monitoring"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/open_the_door"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:backgroundTint="#A4E8C0"
+            android:layout_marginTop="120dp"
+            android:text="开门" />
+        <Button
+            android:id="@+id/close_the_door"
+            android:layout_width="210dp"
+            android:layout_height="100dp"
+            android:backgroundTint="#A4E8C0"
+            android:layout_marginLeft="170dp"
+            android:text="锁门" />
+        <Button
+            android:id="@+id/alarm"
+            android:layout_width="210dp"
+            android:layout_height="100dp"
+            android:backgroundTint="#99E8B9"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
+            android:text="报警" />
 
-    <Button
-        android:id="@+id/open_the_door"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:backgroundTint="@color/yellow2"
-        android:text="开门" />
-    <Button
-        android:id="@+id/close_the_door"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:backgroundTint="@color/yellow2"
-        android:text="锁门" />
-    <Button
-        android:id="@+id/alarm"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:backgroundTint="@color/yellow2"
-        android:text="报警" />
+    </LinearLayout>
 
 
 </LinearLayout>
+
+
+
