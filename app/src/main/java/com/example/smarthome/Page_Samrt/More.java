@@ -16,6 +16,7 @@ import com.example.smarthome.Helper.AddMedalHelper;
 import com.example.smarthome.R;
 
 import org.json.JSONObject;
+import org.litepal.LitePal;
 import org.litepal.tablemanager.Connector;
 
 public class More extends AppCompatActivity {
@@ -39,7 +40,6 @@ public class More extends AppCompatActivity {
         select_tesk=findViewById(R.id.select_tesk);
         create=findViewById(R.id.create);
         model_name=findViewById(R.id.model_name);
-        Connector.getDatabase();
         select_tesk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +58,8 @@ public class More extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name_ml=model_name.getText().toString();//获取输入框值
+                LitePal.getDatabase();
+                name_ml=model_name.getText().toString();    //获取输入框值
                 //判断输入框中是否有值
                 if(TextUtils.isEmpty(name_ml)){
                     Toast.makeText(More.this,"请输入自定义场景名称",Toast.LENGTH_SHORT).show();
@@ -67,8 +68,7 @@ public class More extends AppCompatActivity {
                 AddModel addModel=new AddModel();
                 addModel.setModel(name_ml);
                 addModel.save();
-                Log.v("xxxxxx","cg");
-//                finish();
+                finish();
 
 
             }

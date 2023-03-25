@@ -23,7 +23,49 @@
         android:theme="@style/Theme.SmartHome"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.Test"
+            android:name=".SetAllShow"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Page_Samrt.Set_curtain"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Page_Samrt.Set_air"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Page_Samrt.Tesk"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib.name"
+                android:value=" " />
+        </activity>
+        <activity
+            android:name=".Page_Samrt.Temperature"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib.name"
+                android:value=" " />
+        </activity>
+        <activity
+            android:name=".Page_Samrt.Set_lights"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Page_Samrt.Humidity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -31,6 +73,13 @@
         </activity>
         <activity
             android:name=".Page_Samrt.Condition"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activity.Test"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -77,6 +126,13 @@
 
         <activity
             android:name=".Page_Samrt.AdjustTheMusic"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Page_Huiju.AddHome"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

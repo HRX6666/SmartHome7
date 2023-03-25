@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.example.smarthome.View.SeekPage.RoundImageView
+        <ImageView
             android:id="@+id/iv_avatar"
             android:layout_width="260dp"
             android:layout_marginLeft="15dp"
@@ -20,6 +20,7 @@
             android:layout_marginBottom="10dp"
             android:layout_height="390dp"
             android:scaleType="centerCrop"
+            android:background="@drawable/drwaing"
             app:radius="7.5dp" />
 
     </RelativeLayout>
@@ -44,3 +45,12 @@
 
 
 </LinearLayout>
+<!--    com.example.smarthome.View.SeekPage.RoundImageView-->
+<!--    android:id="@+id/iv_avatar"-->
+<!--    android:layout_width="260dp"-->
+<!--    android:layout_marginLeft="15dp"-->
+<!--    android:layout_marginTop="10dp"-->
+<!--    android:layout_marginBottom="10dp"-->
+<!--    android:layout_height="390dp"-->
+<!--    android:scaleType="centerCrop"-->
+<!--    app:radius="7.5dp" />-->

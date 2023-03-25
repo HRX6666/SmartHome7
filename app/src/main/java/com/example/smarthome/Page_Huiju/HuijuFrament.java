@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -41,6 +42,7 @@ import com.example.smarthome.View.SeekPage.CardConfig;
 import com.example.smarthome.View.SeekPage.CardItemTouchHelperCallback;
 import com.example.smarthome.View.SeekPage.CardLayoutManager;
 import com.example.smarthome.View.SeekPage.OnSwipeListener;
+import com.example.smarthome.View.SeekPage.ViewDrag;
 import com.example.smarthome.View.pullextend.ExtendListHeader;
 import com.example.smarthome.View.pullextend.PullExtendLayout;
 
@@ -55,10 +57,10 @@ public class HuijuFrament extends Fragment {
     private CircleWelComeView circleView;
     RecyclerView huiju,mListHeader;
     ExtendHeadAdapter addadapter;
-    AddHomeAdapter addHomeAdapter;
     View sun_anim;
 //    List<String> mDatas = new ArrayList<>();
 private List<Integer> list = new ArrayList<>();
+private List<String> list1 = new ArrayList<>();
     private ClientMQTT clientMQTT;
     @Nullable
     @Override
@@ -78,6 +80,7 @@ private List<Integer> list = new ArrayList<>();
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initview();
+        final ViewDrag viewDrag = (ViewDrag) getActivity().findViewById(R.id.add_view);
         sun_anim=getActivity().findViewById(R.anim.sun_anim);
         toolbar1.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -92,9 +95,21 @@ private List<Integer> list = new ArrayList<>();
                 return false;
             }
         });
-        huiju_recyclerView();
-        huiju_recyclerView();
+//        huiju_recyclerView();
+//        huiju_recyclerView();
         initData();
+        viewDrag.setAdapter(new ViewDrag.DragCardAdapter<String>(list1,5) {
+
+            @Override
+            public View getView(int i, String str, View conventView, ViewGroup viewGroup) {
+                if(conventView==null){
+                    conventView=getLayoutInflater().inflate(R.layout.item_smart,viewGroup,false);
+                }
+                TextView tv=conventView.findViewById(R.id.tv_name);
+                tv.setText(str);
+                return conventView;
+            }
+        });
 
     }
 
@@ -107,88 +122,75 @@ private List<Integer> list = new ArrayList<>();
 
 //        mListHeader.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
     }
-//    private void initdata() {
-//        mDatas.add("窗帘");
-//        mDatas.add("空调");
-//        mDatas.add("灯光");
-//        mDatas.add("智能门锁");
-//        mDatas.add("音响");
-//        mDatas.add(" ＋ ");
-//        mListHeader.setAdapter(new ExtendHeadAdapter(mDatas).setItemClickListener(new CommonAdapter.ItemClickListener() {
+
+
+//    private void huiju_recyclerView() {
+//        huiju=(RecyclerView)getActivity().findViewById(R.id.add_view);
+//        huiju.setItemAnimator(new DefaultItemAnimator());
+//        huiju.setAdapter(new MyAdapter());
+//        CardItemTouchHelperCallback callback=new CardItemTouchHelperCallback(huiju.getAdapter(),list);
+//        callback.setOnSwipedListener(new OnSwipeListener<Integer>() {
 //            @Override
-//            public void onItemClicked(int position, View view) {
-//                Toast.makeText(getActivity(),mDatas.get(position) + " 功能待实现",Toast.LENGTH_SHORT).show();
+//            public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
+//                viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
 //            }
-//        }));
 //
+//            @Override
+//            public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer integer, int direction) {
+//                if (direction == CardConfig.SWIPED_LEFT) {
+//                    // 向左滑动
+//                } else {
+//                    // 向右滑动
+//                }
+//            }
+//            @Override
+//            public void onSwipedClear() {
+//// 最后一张也滑动结束，表示内容已空
+//                huiju.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        initData();
+//                        huiju.getAdapter().notifyDataSetChanged();
+//                    }
+//                });
+//
+//            }
+//        });
+//        final ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+//        final CardLayoutManager cardLayoutManager = new CardLayoutManager(huiju, touchHelper);
+//        huiju.setLayoutManager(cardLayoutManager);
+//        touchHelper.attachToRecyclerView(huiju);
 //    }
-
-    private void huiju_recyclerView() {
-        huiju=(RecyclerView)getActivity().findViewById(R.id.add_view);
-        huiju.setItemAnimator(new DefaultItemAnimator());
-        huiju.setAdapter(new MyAdapter());
-        CardItemTouchHelperCallback callback=new CardItemTouchHelperCallback(huiju.getAdapter(),list);
-        callback.setOnSwipedListener(new OnSwipeListener<Integer>() {
-            @Override
-            public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
-                viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer integer, int direction) {
-                if (direction == CardConfig.SWIPED_LEFT) {
-                    // 向左滑动
-                } else {
-                    // 向右滑动
-                }
-            }
-            @Override
-            public void onSwipedClear() {
-// 最后一张也滑动结束，表示内容已空
-                huiju.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        initData();
-                        huiju.getAdapter().notifyDataSetChanged();
-                    }
-                });
-
-            }
-        });
-        final ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-        final CardLayoutManager cardLayoutManager = new CardLayoutManager(huiju, touchHelper);
-        huiju.setLayoutManager(cardLayoutManager);
-        touchHelper.attachToRecyclerView(huiju);
-    }
     private void initData() {
-        list.add(R.drawable.br);
-        list.add(R.drawable.drwaing);
-        list.add(R.drawable.toilet2);
+        for (int i = 0; i < 30; i++) {
+            list1.add("这是第"+i+"项");
+        }
+
     }
 
 
 
-    private class MyAdapter extends RecyclerView.Adapter {
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_smart, parent, false);
-            return new MyViewHolder(view);
-        }
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ImageView avatarImageView = ((MyViewHolder) holder).avatarImageView;
-            avatarImageView.setImageResource(list.get(position));
-        }
-        @Override
-        public int getItemCount() {
-            return list.size();
-        }
-        class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView avatarImageView;
-            MyViewHolder(View itemView) {
-                super(itemView);
-                avatarImageView = (ImageView) itemView.findViewById(R.id.iv_avatar);
-            }
-        }
-    }
+//    private class MyAdapter extends RecyclerView.Adapter {
+//        @Override
+//        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_smart, parent, false);
+//            return new MyViewHolder(view);
+//        }
+//        @Override
+//        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+//            ImageView avatarImageView = ((MyViewHolder) holder).avatarImageView;
+//            avatarImageView.setImageResource(list.get(position));
+//        }
+//        @Override
+//        public int getItemCount() {
+//            return list.size();
+//        }
+//        class MyViewHolder extends RecyclerView.ViewHolder {
+//            ImageView avatarImageView;
+//            MyViewHolder(View itemView) {
+//                super(itemView);
+//                avatarImageView = (ImageView) itemView.findViewById(R.id.iv_avatar);
+//            }
+//        }
+//    }
 }

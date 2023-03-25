@@ -1,6 +1,8 @@
 package com.example.smarthome.Helper;
 
-public class AddMedalHelper {
+import com.example.smarthome.Database.AddModel;
+
+public class AddMedalHelper extends AddModel {
     int image;
     String title,description;
 

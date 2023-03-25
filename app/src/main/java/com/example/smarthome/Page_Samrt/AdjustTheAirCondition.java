@@ -70,7 +70,7 @@ public class AdjustTheAirCondition extends AppCompatActivity {
             public void onClick(View v) {
                 finish();}
         });
-        inithome();
+//        inithome();
         rote();
         airview = (AirBoardView) findViewById(R.id.airView);
         airview.setOnAirClickListener(new AirBoardView.OnAirClickListener() {
@@ -200,26 +200,26 @@ public class AdjustTheAirCondition extends AppCompatActivity {
 //
 //    }
 
-    private void inithome() {
-        ArrayAdapter starAdapter_airhome = ArrayAdapter.createFromResource(getApplicationContext(), R.array.choose_home, android.R.layout.simple_spinner_item);
-        Spinner sp_dropdown = findViewById(R.id.air_choose_home);
-        sp_dropdown.setDropDownVerticalOffset(android.R.layout.simple_spinner_dropdown_item);
-        sp_dropdown.setPrompt("请选择房间");
-        sp_dropdown.setAdapter(starAdapter_airhome);
-        sp_dropdown.setSelection(0);
-        sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parenAt, View view, int arg1, long id) {
-
-                //房间选完后在调用一次init方法，大概能刷新数据？god sees
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-    }
+//    private void inithome() {
+//        ArrayAdapter starAdapter_airhome = ArrayAdapter.createFromResource(getApplicationContext(), R.array.choose_home, android.R.layout.simple_spinner_item);
+//        Spinner sp_dropdown = findViewById(R.id.air_choose_home);
+//        sp_dropdown.setDropDownVerticalOffset(android.R.layout.simple_spinner_dropdown_item);
+//        sp_dropdown.setPrompt("请选择房间");
+//        sp_dropdown.setAdapter(starAdapter_airhome);
+//        sp_dropdown.setSelection(0);
+//        sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parenAt, View view, int arg1, long id) {
+//
+//                //房间选完后在调用一次init方法，大概能刷新数据？god sees
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//
+//    }
 }

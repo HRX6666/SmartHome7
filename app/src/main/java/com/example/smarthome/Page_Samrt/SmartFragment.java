@@ -1,9 +1,6 @@
 package com.example.smarthome.Page_Samrt;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,28 +17,25 @@ import com.example.smarthome.Adapter.AddMedalAdapter;
 import com.example.smarthome.Adapter.AddModelAdapter2;
 import com.example.smarthome.Adapter.AddSmartAdapter;
 import com.example.smarthome.Database.AddModel;
+import com.example.smarthome.Database.Model;
 import com.example.smarthome.Helper.AddMedalHelper;
 import com.example.smarthome.Helper.AddSmartHelper;
 import com.example.smarthome.R;
 
 import org.litepal.LitePal;
+import org.litepal.util.Const;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SmartFragment extends Fragment{
     String name_m;
     RecyclerView addsmart,addmedel;
-    RecyclerView.Adapter adapter;
     AddSmartAdapter rvadapter;
-    AddMedalAdapter medalAdapter;
     AddModelAdapter2 addModelAdapter2;
-    AddModel addModel;
+//    AddModel addModel=new AddModel(addmedel);
     ImageView add;
-    List<AddModel>list=new ArrayList<>();
-    @Nullable
+    List<AddModel> list = new ArrayList<>();
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.smart_fragment,container,false);
@@ -66,15 +60,16 @@ public class SmartFragment extends Fragment{
     }
 
     private void recyclerView3() {
-        addModelAdapter2=new AddModelAdapter2(getActivity(),list);
+        addmedel.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        List<AddModel> all = LitePal.findAll(AddModel.class);
+        addModelAdapter2= new AddModelAdapter2(all);
         addmedel.setAdapter(addModelAdapter2);
-        addmedel.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false))
-        ;
-        addModelAdapter2.set0nItemClickListener((view, position) -> {
-//            currnentPlayPosition = position;
-            AddModel addModel = list.get(position);
 
-        });
+//        addModelAdapter2.set0nItemClickListener((view, position) -> {
+////            currnentPlayPosition = position;
+//            AddMedalHelper addModel = addMedalHelpers.get(position);
+//
+//        });
     }
 
 

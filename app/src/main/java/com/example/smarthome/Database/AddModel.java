@@ -1,7 +1,6 @@
 package com.example.smarthome.Database;
-import androidx.annotation.NonNull;
 import org.litepal.crud.LitePalSupport;
-public class AddModel extends LitePalSupport implements Comparable<AddModel> {
+public class AddModel extends LitePalSupport  {
     private String model;
     public void setModel(String model) {
         this.model =model;
@@ -9,14 +8,14 @@ public class AddModel extends LitePalSupport implements Comparable<AddModel> {
     public String getModel() {
         return model;
     }
+    public AddModel(){
+        this.model=model;
+    }
     @Override
     public String toString() {
-        return "User{" +
-                ", name='" + model + '\'' +
+        return "AddModel{" +
+                ", model='" + model + '\'' +
                 '}';
-    }
-    public int compareTo(@NonNull AddModel addModel) {
-        return this.getModel().compareTo(addModel.getModel());
     }
 
 }

@@ -3,21 +3,13 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        debug {
-            storePassword '666666'
-            keyAlias '6'
-            keyPassword '666666'
-            storeFile file('D:\\Android\\sm.jks')
-        }
-    }
-    namespace 'com.example.smarthome'
-    compileSdk 32
+       namespace 'com.example.smarthome'
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.smarthome"
-        minSdk 26//本21
-        targetSdk 32
+        minSdk 33
+        targetSdk 33//本21
         versionCode 1
         versionName "1.0"
 
@@ -38,6 +30,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
 }
 
 

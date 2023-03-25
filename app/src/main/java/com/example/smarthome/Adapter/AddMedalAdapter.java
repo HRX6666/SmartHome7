@@ -8,21 +8,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smarthome.Helper.AddMedalHelper;
+import com.example.smarthome.Database.AddModel;
 import com.example.smarthome.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddMedalAdapter extends RecyclerView.Adapter <AddMedalAdapter.AddMedalHolder> {
-    ArrayList<AddMedalHelper> addMedalHelpers;
+    List<AddModel> addMedalHelpers;
+
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
 
-    public AddMedalAdapter(ArrayList<AddMedalHelper> addMedalHelpers) {
+    public AddMedalAdapter(FragmentActivity activity, List<AddModel> addMedalHelpers) {
         this.addMedalHelpers = addMedalHelpers;
     }
+
+
+//    public AddMedalAdapter(FragmentActivity activity, ArrayList<AddMedalHelper> addMedalHelpers) {
+//    }
 
     @NonNull
     @Override
@@ -34,28 +41,28 @@ public class AddMedalAdapter extends RecyclerView.Adapter <AddMedalAdapter.AddMe
 
     @Override
     public void onBindViewHolder(@NonNull AddMedalHolder holder, int position) {
-        AddMedalHelper addMedalHelper = addMedalHelpers.get(position);
-        holder.imageView.setImageResource(addMedalHelper.getImage());
-        holder.title.setText(addMedalHelper.getTitle());
-        if(onItemClickListener!=null){
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position=holder.getLayoutPosition();//1
-                    onItemClickListener.OnItemClickListener(holder.itemView,position);//2
-                }
-            });
-        }
-        if(onItemLongClickListener!=null){
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    int position=holder.getLayoutPosition();
-                    onItemLongClickListener.onItemLongClick(holder.itemView,position);
-                    return true;//返回true表示消耗了事件不会继续传递啦！
-                }
-            });
-        }
+        AddModel addMedalHelper = addMedalHelpers.get(position);
+//        holder.imageView.setImageResource(addMedalHelper.getImage());
+        holder.title.setText(addMedalHelper.getModel());
+//        if(onItemClickListener!=null){
+//            holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int position=holder.getLayoutPosition();//1
+//                    onItemClickListener.OnItemClickListener(holder.itemView,position);//2
+//                }
+//            });
+//        }
+//        if(onItemLongClickListener!=null){
+//            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//                @Override
+//                public boolean onLongClick(View v) {
+//                    int position=holder.getLayoutPosition();
+//                    onItemLongClickListener.onItemLongClick(holder.itemView,position);
+//                    return true;//返回true表示消耗了事件不会继续传递啦！
+//                }
+//            });
+//        }
 
     }
 
