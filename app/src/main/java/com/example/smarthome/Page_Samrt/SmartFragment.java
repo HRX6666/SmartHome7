@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smarthome.Activity.SetAllShow;
 import com.example.smarthome.Adapter.AddMedalAdapter;
 import com.example.smarthome.Adapter.AddModelAdapter2;
 import com.example.smarthome.Adapter.AddSmartAdapter;
@@ -64,6 +65,14 @@ public class SmartFragment extends Fragment{
         List<AddModel> all = LitePal.findAll(AddModel.class);
         addModelAdapter2= new AddModelAdapter2(all);
         addmedel.setAdapter(addModelAdapter2);
+         addModelAdapter2.set0nItemClickListener(new AddModelAdapter2.OnItemClickListener() {
+             @Override
+             public void OnItemClick(View view, int position) {
+                 Intent intent=new Intent(getActivity(), SetAllShow.class);
+                 startActivity(intent);
+             }
+         });
+
 
 //        addModelAdapter2.set0nItemClickListener((view, position) -> {
 ////            currnentPlayPosition = position;
