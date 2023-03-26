@@ -55,10 +55,10 @@
                 android:id="@+id/ib_set_open"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/curtain_open"
+                android:layout_marginLeft="85dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="20dp"
+                android:background="@drawable/curtain_open" />
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="50dp"
@@ -82,7 +82,7 @@
                 android:id="@+id/ib_set_close"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_toRightOf="@id/view_set_open"
@@ -92,7 +92,7 @@
                 android:layout_height="50dp"
                 android:text="全开"
                 android:layout_marginTop="60dp"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="10dp"
                 android:textSize="17dp"
                 android:layout_toRightOf="@id/view_set_open"
                 android:textColor="#292929" />

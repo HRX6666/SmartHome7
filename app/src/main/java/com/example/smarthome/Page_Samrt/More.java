@@ -43,14 +43,14 @@ public class More extends AppCompatActivity {
         select_tesk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(More.this,Tesk.class);
+                Intent intent=new Intent(More.this,Condition.class);
                 startActivity(intent);
             }
         });
         select_condition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(More.this,Condition.class);
+                Intent intent1=new Intent(More.this, Tesk.class);
                 startActivity(intent1);
 
             }
