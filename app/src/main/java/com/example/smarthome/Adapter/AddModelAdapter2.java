@@ -19,7 +19,7 @@ import java.util.List;
 
 public class AddModelAdapter2 extends RecyclerView.Adapter<AddModelAdapter2.ViewHolder> {
     private Context mContext; // 声明一个上下文对象
-    private List<AddModel> list; // 声明一个音频信息列表w
+    private List<AddModel> list; // 声明一个信息列表w
     OnItemClickListener onItemClickListener;//声明接口对象
 
 

@@ -32,13 +32,13 @@ public class AddHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_home);
-        toolbar=findViewById(R.id.addhome_tb);
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             finish();
-            }
-        });
+//        toolbar=findViewById(R.id.addhome_tb);
+//        toolbar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//             finish();
+//            }
+//        });
         inite();
     }
     private void inite() {;

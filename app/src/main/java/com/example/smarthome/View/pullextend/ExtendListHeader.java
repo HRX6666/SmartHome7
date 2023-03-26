@@ -5,6 +5,13 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,9 +26,10 @@ public class ExtendListHeader extends ExtendLayout {
 
 
     float containerHeight = UIHelper.dip2px(60);
-    float listHeight = UIHelper.dip2px(600);
+    float listHeight = UIHelper.dip2px(500);
     boolean arrivedListHeight = false;
     private RecyclerView mRecyclerView;
+    ImageView sun;
 
     /**
      * 原点
@@ -48,6 +56,8 @@ public class ExtendListHeader extends ExtendLayout {
      */
     public ExtendListHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
+        View view = View.inflate(getContext(), R.layout.extend_header, this);
+        sun = view.findViewById(R.id.sun);
 
     }
 
@@ -111,6 +121,7 @@ public class ExtendListHeader extends ExtendLayout {
 
     @Override
     protected void onRefreshing() {
+
     }
 
     @Override
@@ -137,6 +148,28 @@ public class ExtendListHeader extends ExtendLayout {
             mExpendPoint.setVisibility(INVISIBLE);
             mRecyclerView.setTranslationY(-(Math.abs(offset) - listHeight) / 2);
         }
+    }
+    public void tran(){
+        ScaleAnimation scaleAnimation = new ScaleAnimation(0.4f, 1.0f, 0.50f, 1.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation.setDuration(3000);
+        scaleAnimation.setRepeatCount(100);
+//        rongYi.startAnimation(scaleAnimation);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1f);
+        alphaAnimation.setInterpolator(new AccelerateInterpolator());
+//        alphaAnimation.setFillAfter(fragment);
+        alphaAnimation.setDuration(3000);
+//        fragment.startAnimation(alphaAnimation);
+        TranslateAnimation translateAnimation=new TranslateAnimation(0f,0f,100f,-100f);
+        translateAnimation.setDuration(3000);
+        translateAnimation.setRepeatCount(100);
+//        rongYi.startAnimation(translateAnimation);
+        AnimationSet animationSet = new AnimationSet(false);
+        animationSet.setFillAfter(true);
+        animationSet.addAnimation(alphaAnimation);
+        animationSet.addAnimation(scaleAnimation);
+        animationSet.addAnimation(translateAnimation);
+         sun.startAnimation(animationSet);
     }
 
 

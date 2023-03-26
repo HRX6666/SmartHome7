@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/purple_100">
+        android:background="#EBF9FFE7">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/find_back"
@@ -40,14 +40,16 @@
                 android:gravity="center_vertical"
                 android:text="是否开始新家居入网"
                 android:textSize="20dp"
-                android:textColor="@color/lighthui"
+                android:textColor="#393434"
                 />
 
-            <Switch
+            <com.github.iielse.switchbutton.SwitchView
                 android:id="@+id/switch1"
-                android:layout_width="85dp"
-                android:layout_height="64dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:checked="false"
+                android:layout_marginTop="10dp"
+                app:primaryColor="#9FDCB8"
                 android:layout_toRightOf="@id/text1"/>
         </RelativeLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

@@ -79,7 +79,7 @@ public class AddHomeAdapter extends  RecyclerView.Adapter<com.example.smarthome.
             public ViewHolder(@NonNull View itemView) {
 
                 super(itemView);
-                r_model=(TextView) itemView.findViewById(R.id.tv_name);
+                r_model=(TextView) itemView.findViewById(R.id.room_name);
                 view=itemView;
 
             }

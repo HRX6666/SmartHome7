@@ -41,7 +41,7 @@
             android:layout_marginLeft="10dp"/>
 
 
-            <com.example.smarthome.View.SeekPage.ViewDrag
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/add_view"
                 android:layout_width="300dp"
                 android:layout_height="430dp"

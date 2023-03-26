@@ -11,13 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewbinding.ViewBindings;
 
 import com.example.smarthome.Adapter.FindDeviceAdapter;
 import com.example.smarthome.Database.Device;
 import com.example.smarthome.MQTT.ClientMQTT;
 import com.example.smarthome.Page_Samrt.AdjustTheLights;
 import com.example.smarthome.R;
-
+//import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.litepal.LitePal;
@@ -49,7 +50,7 @@ public class FindDevices extends AppCompatActivity {
             e.printStackTrace();
         }
         clientMQTT.startReconnect(FindDevices.this);
-        //设置进度View样式的大小，只有两个值DEFAULT和LARGE
+//        设置进度View样式的大小，只有两个值DEFAULT和LARGE
 //设置进度View下拉的起始点和结束点，scale 是指设置是否需要放大或者缩小动画
         swipeRefreshLayout.setProgressViewOffset(true, -0, 100);
 //设置进度View下拉的结束点，scale 是指设置是否需要放大或者缩小动画

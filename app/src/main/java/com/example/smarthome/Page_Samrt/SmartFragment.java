@@ -22,6 +22,7 @@ import com.example.smarthome.Database.Model;
 import com.example.smarthome.Helper.AddMedalHelper;
 import com.example.smarthome.Helper.AddSmartHelper;
 import com.example.smarthome.R;
+import com.example.smarthome.View.CircularAnim;
 
 import org.litepal.LitePal;
 import org.litepal.util.Const;
@@ -51,6 +52,7 @@ public class SmartFragment extends Fragment{
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CircularAnim.show(add).go();
                 Intent intent3 = new Intent(getActivity(), More.class);
                    startActivity(intent3);
             }
