@@ -153,7 +153,7 @@ public class SmartFragment extends Fragment{
                         startActivity(intent1);
                         break;
                     case 1:
-                        Intent intent2 = new Intent(getActivity(), AdjustTheAirCondition.class);
+                        Intent intent2 = new Intent(getActivity(),   AdjustTheAirCondition.class);
                         startActivity(intent2);
                         break;
                     case 2:
