@@ -29,10 +29,6 @@ public class AdjustTheAirCondition extends AppCompatActivity {
             Boolean start_min=false;
             Boolean start_mid=false;
             Boolean start_max=false;
-    static final String TAG = "AdjustTheAirCondition";
-    private static final String PREFS_NAME
-            = "com.example.Page Samrt.AdjustTheAirCondition";
-    private static final String PREF_PREFIX_KEY = "prefix_";
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     EditText mAppWidgetPrefix;
     private LinearInterpolator mPanLin=new LinearInterpolator();
@@ -53,18 +49,6 @@ public class AdjustTheAirCondition extends AppCompatActivity {
         ib_wind_max=findViewById(R.id.ib_wind_max);
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if (extras != null) {
-             mAppWidgetId= extras.getInt(
-                    AppWidgetManager.EXTRA_APPWIDGET_ID,
-                    AppWidgetManager.INVALID_APPWIDGET_ID);// Find the widget id from the intent.
-        }
-        // If they gave us an intent without the widget id, just bail.
-        if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
-            finish();
-        }
-//        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-
-
         air_tb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +77,7 @@ public class AdjustTheAirCondition extends AppCompatActivity {
                 animation_min.setInterpolator(new LinearInterpolator());//匀速
                 animation_min.setRepeatCount(-1);//无线循环
             animation_min.setDuration(2000);
+                start_min=true;
                 if(start_mid==true){
                     animation_mid.pause();
                 }
@@ -104,7 +89,7 @@ public class AdjustTheAirCondition extends AppCompatActivity {
                 }
 
             animation_min.start();
-                start_min=true;
+
             }
         });
         ib_wind_mid.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +99,7 @@ public class AdjustTheAirCondition extends AppCompatActivity {
                 animation_mid.setInterpolator(new LinearInterpolator());//匀速
                 animation_mid.setRepeatCount(-1);//无线循环
                 animation_mid.setDuration(1300);
+                start_mid=true;
                 if(start_min==true){
                     animation_min.pause();
                 }
@@ -124,7 +110,7 @@ public class AdjustTheAirCondition extends AppCompatActivity {
                     animation_mid.pause();
                 }
                 animation_mid.start();
-                start_mid=true;
+
             }
         });
         ib_wind_max.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +120,7 @@ public class AdjustTheAirCondition extends AppCompatActivity {
                 animation_max.setInterpolator(new LinearInterpolator());//匀速
                 animation_max.setRepeatCount(-1);//无线循环
                 animation_max.setDuration(900);
+                start_max=true;
                 if(start_min==true){
                     animation_min.pause();
                 }
@@ -144,7 +131,7 @@ public class AdjustTheAirCondition extends AppCompatActivity {
                     animation_max.pause();
                 }
                 animation_max.start();
-                start_max=true;
+
             }
         });
 

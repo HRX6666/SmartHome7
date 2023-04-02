@@ -1,5 +1,6 @@
 package com.example.smarthome.Page_Huiju;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
@@ -54,6 +56,9 @@ import com.example.smarthome.View.SeekPage.CardLayoutManager;
 import com.example.smarthome.View.SeekPage.OnSwipeListener;
 import com.example.smarthome.View.pullextend.ExtendListHeader;
 import com.example.smarthome.View.pullextend.PullExtendLayout;
+import com.example.smarthome.animation.AddAnimationRotation;
+import com.example.smarthome.animation.RuwangAnimationAlpha;
+import com.example.smarthome.animation.SunAnimatorMoverment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +72,9 @@ public class HuijuFrament extends Fragment {
     RecyclerView huiju,mListHeader;
     ExtendHeadAdapter addadapter;
     AddHomeAdapter addHomeAdapter;
+    ObjectAnimator objectAnimator;
     View sun_anim;
-    CardView zhongduan,ruwang;
+    CardView ruwang;
     ImageView sun,moon;
 //    List<String> mDatas = new ArrayList<>();
 private List<Integer> list = new ArrayList<>();
@@ -94,7 +100,6 @@ private List<Integer> list = new ArrayList<>();
         sun=getActivity().findViewById(R.id.sun);
         sun_anim=getActivity().findViewById(R.anim.sun_anim);
         moon=getActivity().findViewById(R.id.moon);
-        zhongduan=getActivity().findViewById(R.id.zhongduan);
         ruwang=getActivity().findViewById(R.id.ruwang);
         toolbar1.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -111,66 +116,7 @@ private List<Integer> list = new ArrayList<>();
         });
         huiju_recyclerView();
         huiju_recyclerView();
-        ScaleAnimation scaleAnimation = new ScaleAnimation(0.4f, 1.0f, 0.50f, 1.0f,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        scaleAnimation.setDuration(4000);
-//        scaleAnimation.setRepeatCount(100);
-//        rongYi.startAnimation(scaleAnimation);
-        AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1f);
-        alphaAnimation.setInterpolator(new AccelerateInterpolator());
-//        alphaAnimation.setFillAfter(fragment);
-        alphaAnimation.setDuration(4000);
-//        fragment.startAnimation(alphaAnimation);
-        TranslateAnimation translateAnimation=new TranslateAnimation(0f,0f,100f,-950f);
-        translateAnimation.setDuration(4000);
-//        translateAnimation.setRepeatCount(100);
-//        rongYi.startAnimation(translateAnimation);
-        AnimationSet animationSet = new AnimationSet(false);
-        animationSet.setFillAfter(true);
-        animationSet.addAnimation(alphaAnimation);
-        animationSet.addAnimation(scaleAnimation);
-        animationSet.addAnimation(translateAnimation);
-         sun.startAnimation(animationSet);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ScaleAnimation scaleAnimation2 = new ScaleAnimation(0f, 1.0f, 0f, 1.0f,
-                        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                scaleAnimation2.setDuration(4000);
-//        scaleAnimation.setRepeatCount(100);
-//        rongYi.startAnimation(scaleAnimation);
-                AlphaAnimation alphaAnimation2 = new AlphaAnimation(0f, 1f);
-                alphaAnimation2.setInterpolator(new AccelerateInterpolator());
-//        alphaAnimation.setFillAfter(fragment);
-                alphaAnimation2.setDuration(4000);
-                AnimationSet animationSet2 = new AnimationSet(false);
-                animationSet2.setFillAfter(true);
-                animationSet2.addAnimation(alphaAnimation2);
-                animationSet2.addAnimation(scaleAnimation2);
-                moon.startAnimation(animationSet2);
-            }
-        },2000);
-        Connector.getDatabase();
-        moon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlphaAnimation alphaAnimation3 = new AlphaAnimation(0.1f, 1f);
-                alphaAnimation3.setInterpolator(new AccelerateInterpolator());
-//        alphaAnimation.setFillAfter(fragment);
-                alphaAnimation3.setDuration(1000);
-                ruwang.startAnimation(alphaAnimation3);
-                ruwang.setVisibility(CardView.VISIBLE);
-                zhongduan.startAnimation(alphaAnimation3);
-                zhongduan.setVisibility(CardView.VISIBLE);
-            }
-        });
-        ruwang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), FindDevices.class);
-                startActivity(intent);
-            }
-        });
+
         initData();
 
     }

@@ -1,10 +1,13 @@
 package com.example.smarthome.Page_Samrt;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smarthome.Activity.BottomSmartHome;
+import com.example.smarthome.Activity.FirstActivity;
 import com.example.smarthome.Activity.SetAllShow;
 import com.example.smarthome.Adapter.AddMedalAdapter;
 import com.example.smarthome.Adapter.AddModelAdapter2;
@@ -23,8 +28,10 @@ import com.example.smarthome.Helper.AddMedalHelper;
 import com.example.smarthome.Helper.AddSmartHelper;
 import com.example.smarthome.R;
 import com.example.smarthome.View.CircularAnim;
+import com.example.smarthome.animation.AddAnimationRotation;
 
 import org.litepal.LitePal;
+import org.litepal.tablemanager.Connector;
 import org.litepal.util.Const;
 
 import java.util.ArrayList;
@@ -35,6 +42,7 @@ public class SmartFragment extends Fragment{
     RecyclerView addsmart,addmedel;
     AddSmartAdapter rvadapter;
     AddModelAdapter2 addModelAdapter2;
+    ObjectAnimator animator;
 //    AddModel addModel=new AddModel(addmedel);
     ImageView add;
     List<AddModel> list = new ArrayList<>();
@@ -52,9 +60,19 @@ public class SmartFragment extends Fragment{
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CircularAnim.show(add).go();
-                Intent intent3 = new Intent(getActivity(), More.class);
-                   startActivity(intent3);
+                animator=ObjectAnimator.ofFloat(add,"rotation",0f,3600f,0f);
+                animator.setDuration(2400);
+                animator.setInterpolator(new AddAnimationRotation());
+                animator.start();
+//                CircularAnim.show(add).go();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent3 = new Intent(getActivity(), More.class);
+                  startActivity(intent3);
+                    }
+                },1000);
+                Connector.getDatabase();
             }
         });
         recyclerView();
