@@ -23,6 +23,20 @@
         android:theme="@style/Theme.SmartHome"
         tools:targetApi="31">
         <activity
+            android:name=".Page_Samrt.ShowSense"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Page_Samrt.Add_Sense"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Activity.SetAllShow"
             android:exported="false">
             <meta-data

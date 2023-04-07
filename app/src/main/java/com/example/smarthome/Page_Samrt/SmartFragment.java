@@ -21,8 +21,10 @@ import com.example.smarthome.Activity.FirstActivity;
 import com.example.smarthome.Activity.SetAllShow;
 import com.example.smarthome.Adapter.AddMedalAdapter;
 import com.example.smarthome.Adapter.AddModelAdapter2;
+import com.example.smarthome.Adapter.AddSenseAdapter;
 import com.example.smarthome.Adapter.AddSmartAdapter;
 import com.example.smarthome.Database.AddModel;
+import com.example.smarthome.Database.AddSense;
 import com.example.smarthome.Database.Model;
 import com.example.smarthome.Helper.AddMedalHelper;
 import com.example.smarthome.Helper.AddSmartHelper;
@@ -39,13 +41,15 @@ import java.util.List;
 
 public class SmartFragment extends Fragment{
     String name_m;
-    RecyclerView addsmart,addmedel;
+    RecyclerView addsmart,addmedel,addsense;
     AddSmartAdapter rvadapter;
     AddModelAdapter2 addModelAdapter2;
+    AddSenseAdapter addSenseAdapter;
     ObjectAnimator animator;
-//    AddModel addModel=new AddModel(addmedel);
-    ImageView add;
+
+    ImageView add,add_sense;
     List<AddModel> list = new ArrayList<>();
+    List<AddSense> addSenseList=new ArrayList<>();
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.smart_fragment,container,false);
@@ -55,6 +59,15 @@ public class SmartFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         addsmart=getActivity().findViewById(R.id.add_smart);
         addmedel=getActivity().findViewById(R.id.add_medal);
+        addsense=getActivity().findViewById(R.id.add_sence);
+        add_sense=getActivity().findViewById(R.id.add_sense_iv);
+        add_sense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),Add_Sense.class);
+                startActivity(intent);
+            }
+        });
         super.onActivityCreated(savedInstanceState);
         add=getActivity().findViewById(R.id.add_home);
         add.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +82,7 @@ public class SmartFragment extends Fragment{
                     @Override
                     public void run() {
                         Intent intent3 = new Intent(getActivity(), More.class);
-                  startActivity(intent3);
+                        startActivity(intent3);
                     }
                 },1000);
                 Connector.getDatabase();
@@ -78,6 +91,22 @@ public class SmartFragment extends Fragment{
         recyclerView();
 //        recyclerView2();
         recyclerView3();
+        recyclerViewSense();
+    }
+
+    private void recyclerViewSense() {
+        addsense.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        List<AddSense> all_sense=LitePal.findAll(AddSense.class);
+        addSenseAdapter=new AddSenseAdapter(all_sense);
+        addsense.setAdapter(addSenseAdapter);
+        addSenseAdapter.set0nItemClickListener(new AddSenseAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+                Intent intent=new Intent(getActivity(),ShowSense.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void recyclerView3() {
@@ -85,13 +114,13 @@ public class SmartFragment extends Fragment{
         List<AddModel> all = LitePal.findAll(AddModel.class);
         addModelAdapter2= new AddModelAdapter2(all);
         addmedel.setAdapter(addModelAdapter2);
-         addModelAdapter2.set0nItemClickListener(new AddModelAdapter2.OnItemClickListener() {
-             @Override
-             public void OnItemClick(View view, int position) {
-                 Intent intent=new Intent(getActivity(), SetAllShow.class);
-                 startActivity(intent);
-             }
-         });
+        addModelAdapter2.set0nItemClickListener(new AddModelAdapter2.OnItemClickListener() {
+            @Override
+            public void OnItemClick(View view, int position) {
+                Intent intent=new Intent(getActivity(), SetAllShow.class);
+                startActivity(intent);
+            }
+        });
 
 
 //        addModelAdapter2.set0nItemClickListener((view, position) -> {
@@ -192,4 +221,4 @@ public class SmartFragment extends Fragment{
 
     }
 
-    }
+}

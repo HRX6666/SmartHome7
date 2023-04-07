@@ -11,15 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Database.AddModel;
-import com.example.smarthome.Database.Home;
+import com.example.smarthome.Database.AddSense;
+import com.example.smarthome.Page_Samrt.Add_Sense;
 import com.example.smarthome.Page_Samrt.More;
 import com.example.smarthome.R;
 
 import java.util.List;
 
-public class AddModelAdapter2 extends RecyclerView.Adapter<AddModelAdapter2.ViewHolder> {
+public class AddSenseAdapter extends RecyclerView.Adapter<AddSenseAdapter.ViewHolder> {
     private Context mContext; // 声明一个上下文对象
-    private List<AddModel> list; // 声明一个信息列表w
+    private List<AddSense> list; // 声明一个信息列表w
     OnItemClickListener onItemClickListener;//声明接口对象
 
 
@@ -31,21 +32,21 @@ public class AddModelAdapter2 extends RecyclerView.Adapter<AddModelAdapter2.View
         void OnItemClick(View view,int position);//设置接口
     }
 
-    public AddModelAdapter2(List<AddModel> modelList) {
-        list = modelList;
+    public AddSenseAdapter(List<AddSense> senseList) {
+        list = senseList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_medal, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_sense, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(parent.getContext().getApplicationContext(), More.class);
-                String  model = viewHolder.m_model.getText().toString().trim();
-                intent.putExtra("model", model);
+                Intent intent = new Intent(parent.getContext().getApplicationContext(), Add_Sense.class);
+                String  sense = viewHolder.s_sense.getText().toString().trim();
+                intent.putExtra("sense", sense);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 parent.getContext().startActivity(intent);
 //                关于Activity跳转，Context中有一个startActivity方法，
@@ -60,9 +61,9 @@ public class AddModelAdapter2 extends RecyclerView.Adapter<AddModelAdapter2.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AddModelAdapter2.ViewHolder holder, int position) {
-        AddModel addModel=list.get(position);
-        holder.m_model.setText(addModel.getModel());
+    public void onBindViewHolder(@NonNull AddSenseAdapter.ViewHolder holder, int position) {
+        AddSense addSense=list.get(position);
+        holder.s_sense.setText(addSense.getSense_name());
         holder.itemView.setOnClickListener(v -> {
             onItemClickListener.OnItemClick(v,position);
         });
@@ -72,12 +73,12 @@ public class AddModelAdapter2 extends RecyclerView.Adapter<AddModelAdapter2.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView m_model;
+        TextView s_sense;
         View view;
         public ViewHolder(@NonNull View itemView) {
 
             super(itemView);
-            m_model=(TextView) itemView.findViewById(R.id.medal_tv);
+            s_sense=(TextView) itemView.findViewById(R.id.sense_tv);
             view=itemView;
 
         }

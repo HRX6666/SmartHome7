@@ -17,6 +17,7 @@
         android:padding="20dp">
 
         <ImageView
+            android:id="@+id/add_sense_iv"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_centerVertical="true"
@@ -59,7 +60,16 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/add_medal"
                 android:layout_width="317dp"
-                android:layout_height="120dp"
+                android:layout_height="105dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center">
+
+            </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/add_sence"
+                android:layout_width="317dp"
+                android:layout_height="105dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center">
 
             </androidx.recyclerview.widget.RecyclerView>
