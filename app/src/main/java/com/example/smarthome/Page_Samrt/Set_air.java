@@ -28,10 +28,10 @@ public class Set_air extends AppCompatActivity {
     }
 
     private void recyclerView() {
-            set_rv.setLayoutManager(new LinearLayoutManager( this, LinearLayoutManager.HORIZONTAL, false));
-            List<AddModel> all = LitePal.findAll(AddModel.class);
-            addModelAdapter2= new AddModelAdapter2(all);
-            set_rv.setAdapter(addModelAdapter2);
+        set_rv.setLayoutManager(new LinearLayoutManager( this, LinearLayoutManager.HORIZONTAL, false));
+        List<AddModel> all = LitePal.findAll(AddModel.class);
+        addModelAdapter2= new AddModelAdapter2(all);
+        set_rv.setAdapter(addModelAdapter2);
     }
 
 

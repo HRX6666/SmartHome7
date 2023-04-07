@@ -84,7 +84,7 @@ public class ExtendListHeader extends ExtendLayout {
 
     @Override
     protected void bindView(View container) {
-        mRecyclerView = findViewById(R.id.list);
+        mRecyclerView = findViewById(R.id.device_list);
         mExpendPoint = findViewById(R.id.expend_point);
     }
 
@@ -116,7 +116,6 @@ public class ExtendListHeader extends ExtendLayout {
         mExpendPoint.setTranslationY(0);
         mRecyclerView.setTranslationY(0);
         arrivedListHeight = false;
-
         ScaleAnimation scaleAnimation = new ScaleAnimation(0.4f, 1.0f, 0.50f, 1.0f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(4000);
@@ -137,7 +136,6 @@ public class ExtendListHeader extends ExtendLayout {
         animationSet.addAnimation(scaleAnimation);
         animationSet.addAnimation(translateAnimation);
          sun.startAnimation(animationSet);
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -179,8 +177,10 @@ public class ExtendListHeader extends ExtendLayout {
         ruwang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
+
 
     }
     @Override

@@ -45,8 +45,6 @@ public class FindDeviceAdapter extends RecyclerView.Adapter<FindDeviceAdapter.Vi
             bt_reject=view.findViewById(R.id.device_reject);
             bt_approve=view.findViewById(R.id.device_approve);
             imageView=view.findViewById(R.id.device_image1);
-
-
         }
     }
 

@@ -98,7 +98,6 @@ private List<Integer> list = new ArrayList<>();
         super.onActivityCreated(savedInstanceState);
         initview();
         sun=getActivity().findViewById(R.id.sun);
-        sun_anim=getActivity().findViewById(R.anim.sun_anim);
         moon=getActivity().findViewById(R.id.moon);
         ruwang=getActivity().findViewById(R.id.ruwang);
         toolbar1.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
