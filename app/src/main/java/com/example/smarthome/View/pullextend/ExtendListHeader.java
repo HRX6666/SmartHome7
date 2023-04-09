@@ -5,6 +5,7 @@ import android.content.Context;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +15,35 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smarthome.Activity.SetAllShow;
+import com.example.smarthome.Adapter.AddModelAdapter2;
+import com.example.smarthome.Adapter.ExtendHeadAdapter;
+import com.example.smarthome.Adapter.base.CommonAdapter;
+import com.example.smarthome.Database.AddDevice;
+import com.example.smarthome.Database.AddModel;
+import com.example.smarthome.Database.AddSense;
 import com.example.smarthome.Helper.UIHelper;
 import com.example.smarthome.Page_Home.FindDevices;
+import com.example.smarthome.Page_Huiju.HuijuFrament;
+import com.example.smarthome.Page_Samrt.Add_Sense;
 import com.example.smarthome.R;
 import com.example.smarthome.animation.AddAnimationRotation;
 import com.example.smarthome.animation.RuwangAnimationAlpha;
+import com.hb.dialog.myDialog.MyAlertInputDialog;
 
+import org.litepal.LitePal;
 import org.litepal.tablemanager.Connector;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -38,9 +56,12 @@ public class ExtendListHeader extends ExtendLayout {
     float listHeight = UIHelper.dip2px(500);
     boolean arrivedListHeight = false;
     private RecyclerView mRecyclerView;
+    String device_nl;
     ImageView sun,moon;
+    ExtendHeadAdapter extendHeadAdapter;
     CardView ruwang;
     ObjectAnimator objectAnimator;
+    List<String> mDatas = new ArrayList<>();
 
     /**
      * 原点
@@ -71,6 +92,7 @@ public class ExtendListHeader extends ExtendLayout {
         sun = view.findViewById(R.id.sun);
         moon=view.findViewById(R.id.moon);
         ruwang=view.findViewById(R.id.ruwang);
+
 
     }
 
@@ -177,12 +199,54 @@ public class ExtendListHeader extends ExtendLayout {
         ruwang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final MyAlertInputDialog myAlertInputDialog = new MyAlertInputDialog(getContext()).builder()
+                        .setTitle("请输入设备名称")
+                        .setEditText("").setCancelable(true);
+                myAlertInputDialog.setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        device_nl= myAlertInputDialog.getResult();
+                        if(TextUtils.isEmpty(device_nl)){
+                            Toast.makeText(getContext(),"请输入传感器名称",Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        AddDevice addDevice=new AddDevice();
+                        addDevice.setDevice(device_nl);
+                        addDevice.save();
+                        addDevice.update(2);
+                        adddevice();
+                       myAlertInputDialog.dismiss();
+
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                myAlertInputDialog.show();
+
+                ruwang.setVisibility(VISIBLE);
+
+
+
+
+//
 
             }
         });
 
 
     }
+
+    private void adddevice() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        List<AddDevice> all = LitePal.findAll(AddDevice.class);
+        extendHeadAdapter= new ExtendHeadAdapter(all);
+        mRecyclerView.setAdapter(extendHeadAdapter);
+
+    }
+
     @Override
     public void onVisibility(){
         sun.setVisibility(INVISIBLE);
@@ -256,6 +320,9 @@ public class ExtendListHeader extends ExtendLayout {
         animationSet.addAnimation(translateAnimation);
          sun.startAnimation(animationSet);
     }
+
+
+
 
 
 }

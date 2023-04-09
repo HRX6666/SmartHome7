@@ -115,7 +115,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 //            height1=outMetrics.heightPixels;
             ViewGroup.LayoutParams layoutParams = itemView.getLayoutParams();
 //            layoutParams.height = height1 ;
-            layoutParams.height = 270;
+            layoutParams.height = 340;
             itemView.setLayoutParams(layoutParams);
             textView = itemView.findViewById(R.id.add_tv);
             imageView = itemView.findViewById(R.id.add_im);
