@@ -15,11 +15,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.smarthome.Activity.BottomSmartHome;
 import com.example.smarthome.Activity.FirstActivity;
+import com.example.smarthome.Adapter.base.CommonAdapter;
+import com.example.smarthome.Database.AddDevice;
 import com.example.smarthome.MQTT.ClientMQTT;
 import com.example.smarthome.Page_Home.FindDevices;
 import com.example.smarthome.R;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.litepal.LitePal;
 import org.litepal.tablemanager.Connector;
 
 
@@ -34,6 +37,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -70,13 +74,13 @@ public class HuijuFrament extends Fragment {
     GridLayoutManager gridLayoutManager;
     private CircleWelComeView circleView;
     RecyclerView huiju,mListHeader;
-    ExtendHeadAdapter addadapter;
+    ExtendHeadAdapter extendHeadAdapter;
     AddHomeAdapter addHomeAdapter;
     ObjectAnimator objectAnimator;
     View sun_anim;
     CardView ruwang;
     ImageView sun,moon;
-//    List<String> mDatas = new ArrayList<>();
+    List<String> mDatas = new ArrayList<>();
 private List<Integer> list = new ArrayList<>();
     private ClientMQTT clientMQTT;
     @Nullable
@@ -115,35 +119,39 @@ private List<Integer> list = new ArrayList<>();
         });
         huiju_recyclerView();
         huiju_recyclerView();
-
+        adddevice();
         initData();
-
     }
 
     private void initview() {
         toolbar1=getActivity().findViewById(R.id.huiju_tb);
 
+
         mPullNewHeader=getActivity().findViewById(R.id.extend_header);
         mPullExtendLayout=getActivity().findViewById(R.id.pull_extend);
         mListHeader=mPullNewHeader.getRecyclerView();
-
-//        mListHeader.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-    }
-//    private void initdata() {
-//        mDatas.add("窗帘");
-//        mDatas.add("空调");
-//        mDatas.add("灯光");
-//        mDatas.add("智能门锁");
-//        mDatas.add("音响");
-//        mDatas.add(" ＋ ");
-//        mListHeader.setAdapter(new ExtendHeadAdapter(mDatas).setItemClickListener(new CommonAdapter.ItemClickListener() {
+//        ruwang.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onItemClicked(int position, View view) {
-//                Toast.makeText(getActivity(),mDatas.get(position) + " 功能待实现",Toast.LENGTH_SHORT).show();
-//            }
-//        }));
+//            public void onClick(View v) {
 //
-//    }
+//
+//
+//
+//
+//
+//
+//            }
+//        });
+
+
+  }
+    private void adddevice() {
+        mListHeader.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        List<AddDevice> all = LitePal.findAll(AddDevice.class);
+        extendHeadAdapter= new ExtendHeadAdapter(all);
+        mListHeader.setAdapter(extendHeadAdapter);
+
+    }
 
     private void huiju_recyclerView() {
         huiju=(RecyclerView)getActivity().findViewById(R.id.add_view);

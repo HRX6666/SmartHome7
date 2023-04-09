@@ -1,7 +1,5 @@
 package com.example.smarthome.View.DeleteRecyclerViewDiy;
 
-import android.view.View;
-
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 

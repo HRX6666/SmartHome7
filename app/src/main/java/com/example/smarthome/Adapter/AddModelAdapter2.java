@@ -22,9 +22,6 @@ public class AddModelAdapter2 extends RecyclerView.Adapter<AddModelAdapter2.View
     private List<AddModel> list; // 声明一个信息列表w
     OnItemClickListener onItemClickListener;//声明接口对象
     RecyclerAdapter.OnItemLongClickListener onItemLongClickListener;
-
-
-
     public void set0nItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener=onItemClickListener;//传递接口
     }

@@ -2,18 +2,15 @@ package com.example.smarthome.Page_Samrt;
 
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,28 +20,26 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smarthome.Activity.BottomSmartHome;
-import com.example.smarthome.Activity.FirstActivity;
 import com.example.smarthome.Activity.SetAllShow;
-import com.example.smarthome.Adapter.AddMedalAdapter;
 import com.example.smarthome.Adapter.AddModelAdapter2;
 import com.example.smarthome.Adapter.AddSenseAdapter;
 import com.example.smarthome.Adapter.RecyclerAdapter;
+import com.example.smarthome.Database.AddDevice;
 import com.example.smarthome.Database.AddModel;
 import com.example.smarthome.Database.AddSense;
-import com.example.smarthome.Database.Model;
-import com.example.smarthome.Helper.AddMedalHelper;
 import com.example.smarthome.Helper.AddSmartHelper;
 import com.example.smarthome.R;
-import com.example.smarthome.View.CircularAnim;
 import com.example.smarthome.View.DeleteRecyclerViewDiy.DividerGridItemDecoration;
 import com.example.smarthome.View.DeleteRecyclerViewDiy.MoveDeleteTouchCallback;
 import com.example.smarthome.View.DeleteRecyclerViewDiy.MoveTouchCallback;
 import com.example.smarthome.View.DeleteRecyclerViewDiy.OnRecyclerItemClickListener;
 import com.example.smarthome.View.DeleteRecyclerViewDiy.VibratorUtils;
 import com.example.smarthome.animation.AddAnimationRotation;
+import com.hb.dialog.myDialog.MyAlertInputDialog;
+
 import org.litepal.LitePal;
 import org.litepal.tablemanager.Connector;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,16 +106,15 @@ public class SmartFragment extends Fragment {
     }
 
 
-
     private void recyclerViewSense() {
-        addsense.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        List<AddSense> all_sense=LitePal.findAll(AddSense.class);
-        addSenseAdapter=new AddSenseAdapter(all_sense);
+        addsense.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        List<AddSense> all_sense = LitePal.findAll(AddSense.class);
+        addSenseAdapter = new AddSenseAdapter(all_sense);
         addsense.setAdapter(addSenseAdapter);
         addSenseAdapter.set0nItemClickListener(new AddSenseAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, int position) {
-                Intent intent=new Intent(getActivity(),ShowSense.class);
+                Intent intent = new Intent(getActivity(), ShowSense.class);
                 startActivity(intent);
 
             }
@@ -130,28 +124,26 @@ public class SmartFragment extends Fragment {
     private void recyclerView3() {
         addmedel.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         List<AddModel> all = LitePal.findAll(AddModel.class);
-        addModelAdapter2= new AddModelAdapter2(all);
+        addModelAdapter2 = new AddModelAdapter2(all);
         addmedel.setAdapter(addModelAdapter2);
         addModelAdapter2.set0nItemClickListener(new AddModelAdapter2.OnItemClickListener() {
             @Override
             public void OnItemClick(View view, int position) {
-                Intent intent=new Intent(getActivity(), SetAllShow.class);
+                Intent intent = new Intent(getActivity(), SetAllShow.class);
                 startActivity(intent);
             }
         });
-
 
 
     }
 
     private void recyclerViewSmart() {
         lists = new ArrayList<>();
-
-            lists.add(new AddSmartHelper(R.drawable.lights_smart, "灯光"));
-            lists.add(new AddSmartHelper(R.drawable.air_condition_smart, "空调"));
-            lists.add(new AddSmartHelper(R.drawable.curtain_smart, "窗帘"));
-            lists.add(new AddSmartHelper(R.drawable.little_mentor, "门锁"));
-            lists.add(new AddSmartHelper(R.drawable.music_smart, "音响"));
+        lists.add(new AddSmartHelper(R.drawable.lights_smart, "灯光"));
+        lists.add(new AddSmartHelper(R.drawable.air_condition_smart, "空调"));
+        lists.add(new AddSmartHelper(R.drawable.curtain_smart, "窗帘"));
+        lists.add(new AddSmartHelper(R.drawable.little_mentor, "门锁"));
+        lists.add(new AddSmartHelper(R.drawable.music_smart, "音响"));
 
 
         recyclerAdapter = new RecyclerAdapter(R.layout.add_smart, lists);
@@ -168,7 +160,7 @@ public class SmartFragment extends Fragment {
             @Override
             public void onItemLongClick(View view, int position) {
                 recyclerAdapter.onSwiped(position);
-            lists.remove(position);
+                lists.remove(position);
             }
         });
 
@@ -176,6 +168,7 @@ public class SmartFragment extends Fragment {
 
 
     }
+
     //控件的监听
     private void setListener() {
 
@@ -186,68 +179,67 @@ public class SmartFragment extends Fragment {
             public void onLongClick(RecyclerView.ViewHolder vh) {
                 //这里可以控制不可拖动的布局（此时的情况为最后一个不可拖动）
 
-                    itemTouchHelper.startDrag(vh);
-                    VibratorUtils.Vibrate( getActivity(), 70);   //震动70ms
-                AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-                builder.setIcon(R.drawable.man);
-                builder.setTitle("重要提醒");
-                builder.setMessage("你真的要删除该设备吗？？");
+                itemTouchHelper.startDrag(vh);
+                VibratorUtils.Vibrate(getActivity(), 70);   //震动70ms
+                final MyAlertInputDialog myAlertInputDialog1 = new MyAlertInputDialog(getActivity());
+                myAlertInputDialog1.builder();
+                myAlertInputDialog1.setTitle("是真的要删除该设备吗");
+                myAlertInputDialog1.setPositiveButton("对！！！", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerAdapter.del(vh.getPosition());
+                        myAlertInputDialog1.dismiss();
+                    }
 
-              builder.setCancelable(true);
-              builder.setPositiveButton("对啊", new DialogInterface.OnClickListener() {
-                  @Override
-                  public void onClick(DialogInterface dialog, int which) {
-                      recyclerAdapter.del(vh.getPosition());
-                      dialog.dismiss();
-                  }
-              });
-
-              builder.setNegativeButton("点错了点错了",new DialogInterface.OnClickListener(){
-                  @Override
-                  public void onClick(DialogInterface dialog, int which) {
-                      dialog.dismiss();
-                  }
 
                 });
-              builder.show();
+                myAlertInputDialog1.setNegativeButton("拒绝", new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getContext(), "好吧", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                myAlertInputDialog1.show();
+
 
 
             }
 
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                AddSmartHelper addSmartHelper= lists.get(vh.getLayoutPosition());
+                AddSmartHelper addSmartHelper = lists.get(vh.getLayoutPosition());
 
 
-            switch (vh.getPosition()) {
-                case 0:
-                    Intent intent1 = new Intent(getActivity(), AdjustTheLights.class);
-                    startActivity(intent1);
-                    break;
-                case 1:
-                    Intent intent2 = new Intent(getActivity(), AdjustTheAirCondition.class);
-                    startActivity(intent2);
-                    break;
-                case 2:
-                    Intent intent3 = new Intent(getActivity(), AdustTheCurtain.class);
-                    startActivity(intent3);
-                    break;
-                case 3:
-                    Intent intent4 = new Intent(getActivity(), Monitoring.class);
-                    startActivity(intent4);
-                    break;
-                case 4:
-                    Intent intent5 = new Intent(getActivity(), AdjustTheMusic.class);
-                    startActivity(intent5);
-                    break;
-            }
+                switch (vh.getPosition()) {
+                    case 0:
+                        Intent intent1 = new Intent(getActivity(), AdjustTheLights.class);
+                        startActivity(intent1);
+                        break;
+                    case 1:
+                        Intent intent2 = new Intent(getActivity(), AdjustTheAirCondition.class);
+                        startActivity(intent2);
+                        break;
+                    case 2:
+                        Intent intent3 = new Intent(getActivity(), AdustTheCurtain.class);
+                        startActivity(intent3);
+                        break;
+                    case 3:
+                        Intent intent4 = new Intent(getActivity(), Monitoring.class);
+                        startActivity(intent4);
+                        break;
+                    case 4:
+                        Intent intent5 = new Intent(getActivity(), AdjustTheMusic.class);
+                        startActivity(intent5);
+                        break;
+                }
 
 
             }
         });
 
     }
-
 
 
 }
