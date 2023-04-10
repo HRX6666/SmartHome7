@@ -198,7 +198,7 @@ public class ExtendListHeader extends ExtendLayout {
         });
         ruwang.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//点击入网以后连接网络判断是否可以执行下面的步骤？以下是弹出提示框是否进行设备接入................
                 final MyAlertInputDialog myAlertInputDialog1=new MyAlertInputDialog(getContext()).builder().
                         setTitle("发现设备是否接入").setPositiveButton("同意",new View.OnClickListener(){
                             @Override
